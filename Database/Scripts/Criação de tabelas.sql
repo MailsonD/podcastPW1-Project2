@@ -46,10 +46,11 @@ CREATE TABLE podcast(
 );
 
 CREATE TABLE avalia_podcast(
+    id SERIAL,
 	usuario TEXT NOT NULL,
 	podcast VARCHAR(100) NOT NULL,
 	comentario TEXT NOT NULL,
-	PRIMARY KEY (usuario,podcast),
+	PRIMARY KEY (usuario,podcast,id),
 	FOREIGN KEY (usuario) REFERENCES usuario(email) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (podcast) REFERENCES podcast(audio) ON DELETE CASCADE
 );
