@@ -1,2 +1,2 @@
 # podcastPW1
-Projeto da disciplina de Programação Web 1 do professor Diego - IFPB
+Projeto 2 da disciplina de Programação Web 1 do professor Diego - IFPB
