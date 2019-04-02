@@ -33,7 +33,7 @@
                 <h:form id="formLogin">
                     <div class="form-group">
                         <h:outputLabel value="Email"></h:outputLabel>
-                        <p:inputText id="login" required="true"  value="#{usuarioBean.login}"
+                        <p:inputText id="login" required="true"  value="#{usuarioBean.email}"
                                      requiredMessage="Login obrigatório"
                                      styleClass="form-control form-control-user">
                         </p:inputText>
@@ -41,13 +41,13 @@
                     </div>
                     <div class="form-group">
                         <h:outputLabel value="Senha"></h:outputLabel>
-                        <p:password id="senha" required="true" value="#{loginBean.senha}"
+                        <p:password id="senha" required="true" value="#{usuarioBean.senha}"
                                     requiredMessage="Senha obrigatória"
                                     styleClass="form-control form-control-user" />
                         <p:message for="senha" />
                     </div>
                     <p:commandButton styleClass="btn" update="formLogin"
-                                     action="#{loginBean.efetuarLogin}" value="Entrar">
+                                     action="#{usuarioBean.efetuarLogin}" value="Entrar">
                         <f:attribute name="tipoForm" value="login">Logar</f:attribute>
                     </p:commandButton>
 
