@@ -22,17 +22,15 @@ import java.util.List;
 public class ComentarioDaoImpl implements ComentarioDao {
 
     UsuarioDao usuarioDao;
-    Connection connection;
 
     public ComentarioDaoImpl(){
         usuarioDao = new UsuarioDaoImpl();
-        connection = ConnectionFactory.getInstance().getConnection();
     }
 
     @Override
     public void salvar(Comentario comentario,String podcast) throws DataAccessException {
         String query = "INSERT INTO avalia_podcast (usuario,podcast,comentario) VALUES (?,?,?)";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,comentario.getUsuario().getEmail());
             statement.setString(2,podcast);
@@ -46,7 +44,7 @@ public class ComentarioDaoImpl implements ComentarioDao {
     @Override
     public void deletar(String usuario, String podcast) throws DataAccessException {
         String query = "DELETE FROM avalia_podcast WHERE usuario = ? AND podcast = ?";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,usuario);
             statement.setString(2,podcast);
@@ -59,7 +57,7 @@ public class ComentarioDaoImpl implements ComentarioDao {
     @Override
     public void deletarPorPodcast(String podcast) throws DataAccessException {
         String query = "DELETE FROM avalia_podcast WHERE podcast = ?";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,podcast);
             statement.execute();
@@ -71,7 +69,7 @@ public class ComentarioDaoImpl implements ComentarioDao {
     @Override
     public List<Comentario> buscarPorPodcast(String podcast) throws DataAccessException {
         String query = "SELECT * FROM avalia_podcast WHERE podcast = ?";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,podcast);
             ResultSet resultSet = statement.executeQuery();

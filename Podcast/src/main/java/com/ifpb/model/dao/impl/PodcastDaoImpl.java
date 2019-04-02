@@ -24,11 +24,9 @@ import java.util.List;
 public class PodcastDaoImpl implements PodcastDao {
 
     private ComentarioDao comentarioDao;
-    private Connection connection;
 
     public PodcastDaoImpl(){
         comentarioDao = new ComentarioDaoImpl();
-        connection = ConnectionFactory.getInstance().getConnection();
     }
 
     @Override
@@ -48,7 +46,7 @@ public class PodcastDaoImpl implements PodcastDao {
         }else{
             query = "INSERT INTO podcast (titulo,categoria,descricao,audio,criador,nome_turma,data_criacao,hora_criacao) VALUES (?,?,?,?,?,?,?,?)";
         }
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,podcast.getTitulo());
             statement.setString(2,podcast.getCategoria());
@@ -73,7 +71,7 @@ public class PodcastDaoImpl implements PodcastDao {
     @Override
     public void remover(String reference) throws DataAccessException {
         String query = "DELETE FROM podcast WHERE audio = ? CASCADE";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,reference);
             statement.execute();
@@ -85,7 +83,7 @@ public class PodcastDaoImpl implements PodcastDao {
     @Override
     public List<Podcast> listar() throws DataAccessException {
         String query = "SELECT * FROM podcast";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             List<Podcast> podcasts = new ArrayList<>();
@@ -101,7 +99,7 @@ public class PodcastDaoImpl implements PodcastDao {
     @Override
     public Podcast buscar(String reference) throws DataAccessException {
         String query = "SELECT * FROM podcast WHERE audio = ?";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,reference);
             ResultSet resultSet = statement.executeQuery();
@@ -117,7 +115,7 @@ public class PodcastDaoImpl implements PodcastDao {
     @Override
     public List<Podcast> buscarPorTurma(String nomeTurma) throws DataAccessException {
         String query = "SELECT * FROM podcast WHERE nome_turma = ?";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,nomeTurma);
             ResultSet resultSet = statement.executeQuery();
@@ -134,7 +132,7 @@ public class PodcastDaoImpl implements PodcastDao {
     @Override
     public List<Podcast> buscarPorCriador(String criador) throws DataAccessException {
         String query = "SELECT * FROM podcast WHERE criador = ?";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,criador);
             ResultSet resultSet = statement.executeQuery();
@@ -156,7 +154,7 @@ public class PodcastDaoImpl implements PodcastDao {
                         " OR " +
                         " descricao ilike ? " +
                         " OR categoria ilike ?";
-        try{
+        try(Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,filtro);
             statement.setString(2,filtro);
@@ -176,7 +174,7 @@ public class PodcastDaoImpl implements PodcastDao {
     @Override
     public void deletarPodcastsPorTurma(String nomeTurma) throws DataAccessException {
         String query = "DELETE FROM podcast WHERE nome_turma = ?";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,nomeTurma);
             statement.execute();
@@ -191,7 +189,7 @@ public class PodcastDaoImpl implements PodcastDao {
                     " FROM podcast " +
                     " ORDER BY data_criacao " +
                     " DESC, hora_criacao DESC";
-        try{
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             List<Podcast> podcasts = new ArrayList<>();

@@ -21,19 +21,17 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
 
     private UsuarioDao usuarioDao;
     private PodcastDao podcastDao;
-    private Connection connection;
 
 
     public TurmaVirtualDaoImpl() {
         usuarioDao = new UsuarioDaoImpl();
         podcastDao = new PodcastDaoImpl();
-        connection = ConnectionFactory.getInstance().getConnection();
     }
 
     @Override
     public void salvar(TurmaVirtual object) throws DataAccessException {
         String query = "INSERT INTO turma_virtual (nome,descricao,professor_email) VALUES (?,?,?)";
-        try {
+        try(Connection connection = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, object.getNome());
             statement.setString(2, object.getDescricao());
@@ -54,7 +52,7 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
     public void remover(String reference) throws DataAccessException {
         String query = "DELETE FROM turma_virtual WHERE nome = ?";
         PodcastDao podcastDao = new PodcastDaoImpl();
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, reference);
             podcastDao.deletarPodcastsPorTurma(reference);
@@ -68,7 +66,7 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
 
     private void deletarParticipantes(String reference) throws DataAccessException {
         String query = "DELETE FROM participa_turma WHERE turma = ?";
-        try{
+        try(Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,reference);
             statement.executeUpdate();
@@ -81,7 +79,7 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
     @Override
     public List<TurmaVirtual> listar() throws DataAccessException {
         String query = "SELECT * FROM turma_virtual";
-        try {
+        try(Connection connection = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             List<TurmaVirtual> turmas = new ArrayList<>();
@@ -98,7 +96,7 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
     @Override
     public TurmaVirtual buscar(String reference) throws DataAccessException {
         String query = "SELECT * FROM turma_virtual WHERE nome = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, reference);
             ResultSet resultSet = statement.executeQuery();
@@ -124,7 +122,7 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
     @Override
     public void adicionarAlunoaTurma(String nomeTurma, String emailAluno) throws DataAccessException {
         String query = "INSERT INTO participa_turma (aluno_email,turma) VALUES(?,?)";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, emailAluno);
             statement.setString(2, nomeTurma);
@@ -138,7 +136,7 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
     @Override
     public void removerAlunodeTurma(String nomeTurma, String emailAluno) throws DataAccessException {
         String query = "DELETE FROM participa_turma WHERE turma = ? AND aluno_email = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, nomeTurma);
             statement.setString(2, emailAluno);
@@ -169,13 +167,15 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
     }
 
     private List<TurmaVirtual> listarPorReferencia(String query, String reference) throws SQLException, DataAccessException {
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, reference);
-        ResultSet result = statement.executeQuery();
-        List<TurmaVirtual> turmas = new ArrayList<>();
-        while (result.next()) {
-            turmas.add(construirTurma(result));
+        try(Connection connection = ConnectionFactory.getInstance().getConnection()){
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, reference);
+            ResultSet result = statement.executeQuery();
+            List<TurmaVirtual> turmas = new ArrayList<>();
+            while (result.next()) {
+                turmas.add(construirTurma(result));
+            }
+            return turmas;
         }
-        return turmas;
     }
 }

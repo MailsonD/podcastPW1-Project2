@@ -18,16 +18,10 @@ import java.util.List;
  */
 public class UsuarioDaoImpl implements UsuarioDao {
 
-    private Connection connection;
-
-    public UsuarioDaoImpl() {
-        connection = ConnectionFactory.getInstance().getConnection();
-    }
-
     @Override
     public void salvar(Usuario usuario) throws DataAccessException {
         String query = "INSERT INTO usuario (email,senha,nome,foto,nascimento,admin,sexo,telefone) VALUES (?,?,?,?,?,?,?,?)";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, usuario.getEmail());
             statement.setString(2, usuario.getSenha());
@@ -58,7 +52,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public void remover(String reference) throws DataAccessException {
         String query = "DELETE FROM usuario WHERE email = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, reference);
             statement.execute();
@@ -71,7 +65,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public List<Usuario> listar() throws DataAccessException {
         String query = "SELECT * FROM usuario";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             return percorrerResultado(resultSet);
@@ -83,7 +77,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public Usuario buscar(String reference) throws DataAccessException {
         String query = "SELECT * FROM usuario WHERE email = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, reference);
             ResultSet resultSet = statement.executeQuery();
@@ -110,7 +104,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public List<Usuario> buscarAlunosPorTurma(String nomeTurma) throws DataAccessException {
         String query = "SELECT * FROM usuario u, participa_turma pt WHERE u.email = pt.aluno_email AND pt.turma = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, nomeTurma);
             ResultSet resultSet = statement.executeQuery();
@@ -136,7 +130,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
                         " from participa_turma " +
                         " where turma = ? " +
                         " ) ";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,nomeTurma);
             ResultSet resultSet = statement.executeQuery();
@@ -149,7 +143,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public void atualizar(String email, Usuario usuario) throws DataAccessException {
         String query = "UPDATE usuario SET email = ?, nome = ?, senha = ?, telefone = ?, nascimento = ? WHERE email = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, usuario.getEmail());
             statement.setString(2, usuario.getNome());
@@ -166,7 +160,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public boolean autenticarUsuario(String email, String senha) throws DataAccessException {
         String query = "SELECT senha FROM usuario WHERE email = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
@@ -183,7 +177,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public void salvarFoto(String path, String emailUsuario) throws DataAccessException {
         String query = "UPDATE usuario SET foto = ? WHERE email = ?";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, path);
             statement.setString(2, emailUsuario);
@@ -197,7 +191,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     public void setAdmin(String emailUsuaio) throws DataAccessException{
             String query = "UPDATE usuario SET admin='TRUE' WHERE email = ? ";
         PreparedStatement preparedStatement = null;
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,emailUsuaio);
             preparedStatement.executeUpdate();
@@ -210,7 +204,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     private List<Usuario> buscarPorTipo(Tipo tipo) throws DataAccessException {
         String query = "SELECT * FROM usuario u," + (tipo.equals(Tipo.ALUNO) ? "aluno u2" : "professor u2") + "  WHERE u.email = u2.email";
-        try {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             return percorrerResultado(resultSet);
@@ -243,11 +237,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     private boolean isAluno(String email) throws SQLException {
-        String query = "SELECT * FROM aluno WHERE email = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, email);
-        ResultSet result = statement.executeQuery();
-        return result.next();
+        try(Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String query = "SELECT * FROM aluno WHERE email = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, email);
+            ResultSet result = statement.executeQuery();
+            return result.next();
+        }
     }
 
 
