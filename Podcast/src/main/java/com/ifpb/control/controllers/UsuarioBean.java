@@ -3,6 +3,7 @@ package com.ifpb.control.controllers;
 import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.UsuarioDaoImpl;
 import com.ifpb.model.dao.interfaces.UsuarioDao;
+import com.ifpb.model.domain.Usuario;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,42 +15,23 @@ public class UsuarioBean {
 
     private UsuarioDao usuarioDao;
 
-    private String email;
-
-    private String senha;
+    private Usuario usuario;
 
     @PostConstruct
     public void init() {
         usuarioDao = new UsuarioDaoImpl();
+        usuario = new Usuario();
     }
 
-    public String efetuarLogin(){
-
-        try {
-            if(usuarioDao.autenticarUsuario(email,senha)){
-                
-            }else{
-                System.out.println("não foi!");
-            }
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
-
+    public void cadastrar(){
+        
     }
 
-    public String getEmail() {
-        return email;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
