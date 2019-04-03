@@ -23,11 +23,11 @@ public class UsuarioBean {
         usuarioDao = new UsuarioDaoImpl();
     }
 
-    public void efetuarLogin(){
+    public String efetuarLogin(){
 
         try {
             if(usuarioDao.autenticarUsuario(email,senha)){
-                System.out.println("foi!");
+                
             }else{
                 System.out.println("não foi!");
             }
