@@ -88,7 +88,7 @@ public class TurmaVirtualDaoImpl implements TurmaVirtualDao {
             }
             return turmas;
         } catch (SQLException e) {
-            throw new DataAccessException("Falha ao tentar apagar uma turma vitural;");
+            throw new DataAccessException("Falha ao tentar apagar uma turma virtual;");
         }
     }
 

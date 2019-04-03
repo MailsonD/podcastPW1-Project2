@@ -1,12 +1,15 @@
 package com.ifpb.control.controllers;
 
 
+import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.UsuarioDaoImpl;
 import com.ifpb.model.dao.interfaces.UsuarioDao;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
@@ -24,7 +27,12 @@ public class LoginBean {
 
     }
 
-    public String efetuarLogin(){
+    public String efetuarLogin() throws DataAccessException {
+
+        if(!usuarioDao.autenticarUsuario(email,senha)){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos", "Login ou senha inválidos"));
+            return "";
+        }return "home";
 
     }
 
