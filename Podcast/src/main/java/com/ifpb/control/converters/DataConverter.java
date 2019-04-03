@@ -15,7 +15,6 @@ public class DataConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String data) {
 
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse(data, formatter);
 
