@@ -1,16 +1,15 @@
 package com.ifpb.control.controllers;
-
-import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.UsuarioDaoImpl;
 import com.ifpb.model.dao.interfaces.UsuarioDao;
 import com.ifpb.model.domain.Usuario;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class UsuarioBean {
 
     private UsuarioDao usuarioDao;
@@ -24,7 +23,7 @@ public class UsuarioBean {
     }
 
     public void cadastrar(){
-        
+
     }
 
     public Usuario getUsuario() {
