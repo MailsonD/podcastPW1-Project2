@@ -25,7 +25,7 @@ public class LoginBean {
     }
 
     public String efetuarLogin(){
-
+        return "";
     }
 
     public String getEmail() {
