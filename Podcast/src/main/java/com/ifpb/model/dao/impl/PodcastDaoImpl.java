@@ -98,10 +98,15 @@ public class PodcastDaoImpl implements PodcastDao {
 
     @Override
     public Podcast buscar(String reference) throws DataAccessException {
-        String query = "SELECT * FROM podcast WHERE audio = ?";
+        return null;
+    }
+
+    @Override
+    public Podcast buscar(int reference) throws DataAccessException {
+        String query = "SELECT * FROM podcast WHERE id = ?";
         try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,reference);
+            statement.setInt(1,reference);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                 return construirPodcast(resultSet);
@@ -206,12 +211,13 @@ public class PodcastDaoImpl implements PodcastDao {
     private Podcast construirPodcast(ResultSet resultSet) throws SQLException, DataAccessException {
         Podcast podcast = new Podcast();
         UsuarioDao usuarioDao = new UsuarioDaoImpl();
+        podcast.setId(resultSet.getInt("id"));
         podcast.setTitulo(resultSet.getString("titulo"));
         podcast.setCategoria(resultSet.getString("categoria"));
         podcast.setDescricao(resultSet.getString("descricao"));
         podcast.setAudioPath(resultSet.getString("audio"));
         podcast.setDono(usuarioDao.buscar(resultSet.getString("criador")));
-        podcast.setComentarios(comentarioDao.buscarPorPodcast(resultSet.getString("audio")));
+        podcast.setComentarios(comentarioDao.buscarPorPodcast(resultSet.getInt("id")));
         return podcast;
     }
 

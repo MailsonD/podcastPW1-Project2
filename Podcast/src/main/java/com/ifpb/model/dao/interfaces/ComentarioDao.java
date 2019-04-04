@@ -11,9 +11,9 @@ import java.util.List;
  *
  */
 public interface ComentarioDao {
-    void salvar(Comentario comentario,String podcast) throws DataAccessException;
-    void deletar(String usuario, String podcast) throws DataAccessException;
-    void deletarPorPodcast(String podcast) throws DataAccessException;
-    List<Comentario> buscarPorPodcast(String podcast) throws DataAccessException;
+    void salvar(Comentario comentario,int podcast) throws DataAccessException;
+    void deletar(int idComentario) throws DataAccessException;
+    void deletarPorPodcast(int podcast) throws DataAccessException;
+    List<Comentario> buscarPorPodcast(int podcast) throws DataAccessException;
 
 }
