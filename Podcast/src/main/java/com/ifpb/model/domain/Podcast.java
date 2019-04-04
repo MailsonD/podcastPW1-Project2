@@ -13,6 +13,7 @@ import java.util.Objects;
 
 public class Podcast {
 
+    private int id;
     private String titulo;
     private String descricao;
     private String categoria;
@@ -81,13 +82,21 @@ public class Podcast {
         this.comentarios = comentarios;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Podcast podcast = (Podcast) o;
-        return Objects.equals(titulo, podcast.titulo) &&
+        return id == podcast.id &&
+                Objects.equals(titulo, podcast.titulo) &&
                 Objects.equals(descricao, podcast.descricao) &&
                 Objects.equals(categoria, podcast.categoria) &&
                 Objects.equals(audioPath, podcast.audioPath) &&
@@ -97,13 +106,14 @@ public class Podcast {
 
     @Override
     public int hashCode() {
-        return Objects.hash(titulo, descricao, categoria, audioPath, dono, comentarios);
+        return Objects.hash(id, titulo, descricao, categoria, audioPath, dono, comentarios);
     }
 
     @Override
     public String toString() {
         return "Podcast{" +
-                "titulo='" + titulo + '\'' +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", audioPath='" + audioPath + '\'' +
