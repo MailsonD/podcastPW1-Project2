@@ -38,10 +38,10 @@
             <div class="col s4">
 
             </div>
-            <div class="col s4"><h4>Conecte-se ao IFCast</h4>
+            <div class="col s4 center-align"><h4>Conecte-se ao IFCast</h4><br/>
                 <!-- Modal Trigger -->
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>
-                ou
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a><br/>
+                ou<br/>
                 <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Cadastre-se</a>
 
                 <!-- Modal Structure -->
@@ -71,6 +71,71 @@
                             </p:commandButton>
 
                         </h:form>
+                    </div>
+
+                </div>
+                <!-- Modal Structure -->
+                <div id="modal2" class="modal">
+                    <div class="modal-content">
+                        <h:form id="formCadastro">
+                            <div class="form-group">
+                                <h:outputLabel value="E-mail:"></h:outputLabel>
+                                <p:inputText id="email" required="true"  value="#{usuarioBean.usuario.email}"
+                                             requiredMessage="Email obrigatório"
+                                             styleClass="form-control form-control-user">
+                                </p:inputText>
+                                <p:message for="email" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Nome:"></h:outputLabel>
+                                <p:inputText id="nome" required="true" value="#{usuarioBean.usuario.nome}"
+                                             requiredMessage="Nome obrigatória"
+                                             styleClass="form-control form-control-user" />
+                                <p:message for="senha" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Senha:"></h:outputLabel>
+                                <p:password id="senha" required="true" value="#{usuarioBean.usuario.senha}"
+                                            requiredMessage="Senha obrigatória"
+                                            styleClass="form-control form-control-user" />
+                                <p:message for="senha" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Telefone:"></h:outputLabel>
+                                <p:inputText id="telefone" required="true" value="#{usuarioBean.usuario.telefone}"
+                                             styleClass="form-control form-control-user" />
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Sexo:"></h:outputLabel>
+                                <p:selectOneRadio value="#{usuarioBean.sexo}">
+                                    <f:selectItem itemValue="M" itemLabel="Masculino"></f:selectItem>
+                                    <f:selectItem itemValue="F" itemLabel="Feminino"></f:selectItem>
+                                </p:selectOneRadio>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Tipo:"></h:outputLabel>
+                                <p:selectOneRadio styleClass="ui-radiobutton-box" value="#{usuarioBean.tipo}">
+                                    <f:selectItem itemValue="A" itemLabel="Aluno"></f:selectItem>
+                                    <f:selectItem itemValue="P" itemLabel="Professor"></f:selectItem>
+                                </p:selectOneRadio>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Data de nascimento"></h:outputLabel>
+                                <p:calendar styleClass="ui-calendar" required="true" pattern="dd/MM/yyyy" mask="true" showOn="button"
+                                            requiredMessage="Data de nascimento obrigatória"
+                                            value="#{usuarioBean.usuario.nascimento}">
+                                    <f:converter converterId="dataConverter" />
+                                </p:calendar>
+                            </div>
+                            <p:commandButton styleClass="btn" update="formCadastro"
+
+                                             action="#{usuarioBean.cadastrar}" value="Cadastrar">
+                            </p:commandButton>
+
+                        </h:form>
+
+
+
                     </div>
 
                 </div>
