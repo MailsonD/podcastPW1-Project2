@@ -73,6 +73,8 @@
             <artifactId>primefaces</artifactId>
             <version>6.2</version>
         </dependency>
+
+
         <!-- PRIMEFACES ALL THEMES -->
         <dependency>
             <groupId>org.primefaces.themes</groupId>
