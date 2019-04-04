@@ -34,19 +34,47 @@
 
 <h:body >
 <f:view>
+
+    <h:form>
+        <p:growl id="messages"/>
+
+        <p:menubar>
+            <p:submenu label="IFCast" url="timeline.xhtml" >
+                <p:menuitem value="Home" url="timeline.xhtml"/>
+                <p:menuitem value="Usuário" url="usuario.xhtml" />
+
+                <p:menuitem value="Turmas Virtuais" url="#" />
+                <p:separator />
+                <p:menuitem value="Upload" url="#" />
+
+            </p:submenu>
+
+
+            <p:menuitem value="Sair" url="http://www.primefaces.org" />
+
+            <f:facet name="options">
+                <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+
+            </f:facet>
+        </p:menubar>
+    </h:form>
     <div class="row">
-        <div class="row">
-            <div class="col s12 m4 l2"></div>
-            <div class="col s12 m4 l8"><p>
+            <div class="col s12 m4 l1"></div>
+            <div class="col s12 m4 l9"><p>
                 <h:form>
                     <p:growl id="perfil" showDetail="true" />
 
                     <p:fieldset legend="Meus dados" style="margin-bottom:20px">
                         <h:panelGrid >
-                            <p:column rowpan="4">
-                                <p:graphicImage url="../assets/img/default.jpg" width="200px" height="200px" />
+                            <p:column rowpan="5" styleClass="center-align">
+                                <p:graphicImage url="../assets/img/default.jpg" width="200px" height="200px" styleClass="center-align" />
                             </p:column>
                             <h:outputText value="Nome" />
+
+                            <h:outputText value="Telefone" />
+
+                            <h:outputText value="Data de Nacimento" />
+                            <h:outputText value="E-mail" />
                         </h:panelGrid>
                     </p:fieldset>
 
@@ -59,20 +87,19 @@
                             <p:column rowpan="4">
                                 <p:graphicImage url="../assets/img/default.jpg" width="200px" height="200px" />
                             </p:column>
-                            <h:outputText
-                                    value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-                His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-                Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
-                but given to ruthless violence whenever anything stands against the good of the family." />
+                            <h:outputText value="Nome" />
+
+                            <h:outputText value="Telefone" />
+
+                            <h:outputText value="Data de Nacimento" />
+                            <h:outputText value="E-mail" />
                         </h:panelGrid>
                     </p:fieldset>
 
                 </h:form></p></div>
-            <div class="col s12 m4 l2"></div>
+            <div class="col s12 m4 l1"></div>
         </div>
 
-
-    </div>
 
 </f:view>
 </h:body>
