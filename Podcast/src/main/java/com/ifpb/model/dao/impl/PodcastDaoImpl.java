@@ -206,6 +206,7 @@ public class PodcastDaoImpl implements PodcastDao {
     private Podcast construirPodcast(ResultSet resultSet) throws SQLException, DataAccessException {
         Podcast podcast = new Podcast();
         UsuarioDao usuarioDao = new UsuarioDaoImpl();
+        podcast.setId(resultSet.getInt("id"));
         podcast.setTitulo(resultSet.getString("titulo"));
         podcast.setCategoria(resultSet.getString("categoria"));
         podcast.setDescricao(resultSet.getString("descricao"));
