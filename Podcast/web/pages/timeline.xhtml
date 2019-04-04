@@ -39,11 +39,18 @@
 
         <p:menubar>
             <p:submenu label="IFCast" >
+                <p:submenu label="Usuário" >
+                    <p:menuitem value="Meus dados" url="#" />
+                    <p:menuitem value="Configurações" url="#" />
+                </p:submenu>
+                <p:menuitem value="Turmas Virtuais" url="#" />
+                <p:separator />
+                <p:menuitem value="Upload" url="#" />
 
             </p:submenu>
 
 
-            <p:menuitem value="Quit" url="http://www.primefaces.org" />
+            <p:menuitem value="Sair" url="http://www.primefaces.org" />
 
             <f:facet name="options">
                 <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
@@ -51,29 +58,16 @@
             </f:facet>
         </p:menubar>
     </h:form>
-    <h:form>
-
-
-        <p:growl>
-            <p:autoUpdate />
-        </p:growl>
-
-        <p:panelMenu style="width:300px">
-            <p:submenu label="Usuário">
-                <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" />
-                <p:menuitem value="Update" action="#{menuView.update}"  icon="pi pi-refresh" />
-            </p:submenu>
-            <p:submenu label="Turmas Virtuais">
-                <p:menuitem value="Delete" action="#{menuView.delete}"  ajax="false" icon="pi pi-times"/>
-            </p:submenu>
-            <p:separator />
-            <p:submenu label="Upload" >
-                               <p:menuitem value="Fazer upload" icon="pi pi-mobile" />
-            </p:submenu>
-        </p:panelMenu>
-    </h:form>
-
-
+    <div class="row">
+        <div class="col s12 m7">
+            <p:panel id="basic" header="Título" footer="Movie Details" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="https://www.seoclerk.com/pics/555434-1FzqjL1503944654.png" />
+                    <h:outputText  value="Postado por:" />
+                </h:panelGrid>
+            </p:panel>
+        </div>
+    </div>
 
 </f:view>
 </h:body>
