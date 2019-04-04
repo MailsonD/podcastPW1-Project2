@@ -16,11 +16,15 @@
 
     <title>Loja PWEB - Login</title>
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" type="text/javascript"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+     <!--&lt;!&ndash;Compiled and minified CSS&ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>-->
+
+    <!--&lt;!&ndash; Compiled and minified JavaScript &ndash;&gt;-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" type="text/javascript"></script>-->
 
 </h:head>
 
@@ -67,19 +71,19 @@
                     </div>
                     <div class="form-group">
                         <h:outputLabel value="Tipo:"></h:outputLabel>
-                        <p:selectOneRadio value="#{usuarioBean.tipo}">
+                        <p:selectOneRadio styleClass="ui-radiobutton-box" value="#{usuarioBean.tipo}">
                             <f:selectItem itemValue="A" itemLabel="Aluno"></f:selectItem>
                             <f:selectItem itemValue="P" itemLabel="Professor"></f:selectItem>
                         </p:selectOneRadio>
                     </div>
-                    <!--<div class="form-group">-->
-                        <!--<h:outputLabel value="Data de nascimento"></h:outputLabel>-->
-                        <!--<p:calendar required="true" pattern="dd/MM/yyyy"-->
-                                    <!--requiredMessage="Data de nascimento obrigatória"-->
-                                    <!--value="#{usuarioBean.usuario.nascimento}">-->
-                            <!--<f:converter converterId="dataConverter" />-->
-                        <!--</p:calendar>-->
-                    <!--</div>-->
+                    <div class="form-group">
+                        <h:outputLabel value="Data de nascimento"></h:outputLabel>
+                        <p:calendar styleClass="ui-calendar" required="true" pattern="dd/MM/yyyy" mask="true" showOn="button"
+                                    requiredMessage="Data de nascimento obrigatória"
+                                    value="#{usuarioBean.usuario.nascimento}">
+                            <f:converter converterId="dataConverter" />
+                        </p:calendar>
+                    </div>
                     <center><p:commandButton styleClass="btn" class="btn-large orange" update="formCadastro"
                                      action="#{usuarioBean.cadastrar}" value="Cadastrar">
                     </p:commandButton></center>
