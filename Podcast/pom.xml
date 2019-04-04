@@ -79,6 +79,11 @@
             <artifactId>all-themes</artifactId>
             <version>1.0.10</version>
         </dependency>
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>afterdark</artifactId>
+            <version>1.0.10</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>IFCast - Perfil</title>
+
+
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" type="text/javascript"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+
+
+</h:head>
+
+<h:body >
+<f:view>
+    <div class="row">
+        <div class="row">
+            <div class="col s12 m4 l2"></div>
+            <div class="col s12 m4 l8"><p>
+                <h:form>
+                    <p:growl id="perfil" showDetail="true" />
+
+                    <p:fieldset legend="Meus dados" style="margin-bottom:20px">
+                        <h:panelGrid >
+                            <p:column rowpan="4">
+                                <p:graphicImage url="../assets/img/default.jpg" width="200px" height="200px" />
+                            </p:column>
+                            <h:outputText value="Nome" />
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                </h:form>
+                <h:form>
+                    <p:growl id="configuracoes" showDetail="true" />
+
+                    <p:fieldset legend="Configurações" style="margin-bottom:20px">
+                        <h:panelGrid >
+                            <p:column rowpan="4">
+                                <p:graphicImage url="../assets/img/default.jpg" width="200px" height="200px" />
+                            </p:column>
+                            <h:outputText
+                                    value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
+                but given to ruthless violence whenever anything stands against the good of the family." />
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                </h:form></p></div>
+            <div class="col s12 m4 l2"></div>
+        </div>
+
+
+    </div>
+
+</f:view>
+</h:body>
+</html>

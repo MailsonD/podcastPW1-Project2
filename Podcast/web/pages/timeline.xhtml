@@ -39,10 +39,8 @@
 
         <p:menubar>
             <p:submenu label="IFCast" >
-                <p:submenu label="Usuário" >
-                    <p:menuitem value="Meus dados" url="#" />
-                    <p:menuitem value="Configurações" url="#" />
-                </p:submenu>
+                <p:menuitem value="Usuário" url="usuario.xhtml" />
+
                 <p:menuitem value="Turmas Virtuais" url="#" />
                 <p:separator />
                 <p:menuitem value="Upload" url="#" />
@@ -65,10 +63,14 @@
 
             <p:panel header="Título" footer="Postado por:" style="margin-bottom:20px">
                 <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage library="img" name="../assets/img/m.png" />
-                    <h:outputText  value="Descrição"/>
+                    <p:column rowpan="4">
+                        <p:graphicImage url="../assets/img/m.png" width="200px" height="200px" />
+                        <h:outputText  value="Descrição"/><br/>
+                        <a class="btn float red white-text"><i class="material-icons white-text">play_arrow</i></a>
+                    </p:column>
 
-                    <a class="btn float red white-text"><i class="material-icons white-text">play_arrow</i></a>
+
+
 
 
                 </h:panelGrid>
