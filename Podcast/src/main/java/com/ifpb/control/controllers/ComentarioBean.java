@@ -17,48 +17,48 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ComentarioBean {
 
-    ComentarioDao comentarios;
-
-    @PostConstruct
-    public void init(){
-        comentarios = new ComentarioDaoImpl();
-    }
-
-    public String salvar(Comentario comentario, String podcast){
-        try{
-            comentarios.salvar(comentario, podcast);
-        }
-        catch (DataAccessException e){
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    public String deletar (String usuario, String podcast) {
-        try {
-            comentarios.deletar(usuario, podcast);
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    public String deletarPorPodcast(String podcast){
-        try {
-            comentarios.deletarPorPodcast(podcast);
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    public String buscarPorPodcast(String podcast){
-        try {
-            comentarios.buscarPorPodcast(podcast);
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+//    ComentarioDao comentarios;
+//
+//    @PostConstruct
+//    public void init(){
+//        comentarios = new ComentarioDaoImpl();
+//    }
+//
+//    public String salvar(Comentario comentario, String podcast){
+//        try{
+//            comentarios.salvar(comentario, podcast);
+//        }
+//        catch (DataAccessException e){
+//            e.printStackTrace();
+//        }
+//        return "";
+//    }
+//
+//    public String deletar (String usuario, String podcast) {
+//        try {
+//            comentarios.deletar(usuario, podcast);
+//        } catch (DataAccessException e) {
+//            e.printStackTrace();
+//        }
+//        return "";
+//    }
+//
+//    public String deletarPorPodcast(String podcast){
+//        try {
+//            comentarios.deletarPorPodcast(podcast);
+//        } catch (DataAccessException e) {
+//            e.printStackTrace();
+//        }
+//        return "";
+//    }
+//
+//    public String buscarPorPodcast(String podcast){
+//        try {
+//            comentarios.buscarPorPodcast(podcast);
+//        } catch (DataAccessException e) {
+//            e.printStackTrace();
+//        }
+//        return "";
+//    }
 
 }
