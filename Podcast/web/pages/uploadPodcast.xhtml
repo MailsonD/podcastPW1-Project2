@@ -31,7 +31,7 @@
             <div class="col s4">
                 <h:form id="formUpload" enctype="multipart/form-data">
                     <div class="form-group">
-                        <h:outputLabel value="Email"></h:outputLabel>
+                        <h:outputLabel value="Título"></h:outputLabel>
                         <p:inputText id="titulo" required="true"  value="#{podcastBean.podcast.titulo}"
                                      requiredMessage="Título obrigatório"
                                      styleClass="form-control form-control-user">
@@ -56,12 +56,13 @@
                     </div>
                     <div class="form-group">
                         <br/>
-                        <h:outputLabel value="Audio" />
-                        <p:fileUpload value="#{podcastBean.audio}" required="true" requiredMessage="É necessário selecionar um arquivo" />
+                        <h:outputLabel value="Audio" /><br/>
+                        <h:inputFile id="arquivo" validator="#{podcastBean.validateFile}" value="#{podcastBean.audio}" required="true" requiredMessage="É necessário selecionar um arquivo" />
+                        <p:message  for="arquivo" />
                     </div>
                     <br/>
                     <p:commandButton styleClass="btn" update="formUpload"
-                                     action="#{podcastBean.cadastrar}" value="Realizar upload">
+                                     action="#{podcastBean.upload}" value="Realizar upload" ajax="false">
                     </p:commandButton>
 
                 </h:form>
