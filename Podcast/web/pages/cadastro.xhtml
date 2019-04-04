@@ -29,10 +29,10 @@
         <div class="row" style="height: 10%"></div>
         <div class="row" style="height: 80%">
             <div class="col s4"></div>
-            <div class="col s4">
+            <div class="col s4 card ">
                 <h:form id="formCadastro">
                     <div class="form-group">
-                        <h:outputLabel value="Email"></h:outputLabel>
+                        <h:outputLabel value="E-mail:"></h:outputLabel>
                         <p:inputText id="email" required="true"  value="#{usuarioBean.usuario.email}"
                                      requiredMessage="Email obrigatório"
                                      styleClass="form-control form-control-user">
@@ -40,33 +40,33 @@
                         <p:message for="email" />
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="nome"></h:outputLabel>
+                        <h:outputLabel value="Nome:"></h:outputLabel>
                         <p:inputText id="nome" required="true" value="#{usuarioBean.usuario.nome}"
                                     requiredMessage="Nome obrigatória"
                                     styleClass="form-control form-control-user" />
                         <p:message for="senha" />
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Senha"></h:outputLabel>
+                        <h:outputLabel value="Senha:"></h:outputLabel>
                         <p:password id="senha" required="true" value="#{usuarioBean.usuario.senha}"
                                     requiredMessage="Senha obrigatória"
                                     styleClass="form-control form-control-user" />
                         <p:message for="senha" />
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="telefone"></h:outputLabel>
+                        <h:outputLabel value="Telefone:"></h:outputLabel>
                         <p:inputText id="telefone" required="true" value="#{usuarioBean.usuario.telefone}"
                                     styleClass="form-control form-control-user" />
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Sexo"></h:outputLabel>
+                        <h:outputLabel value="Sexo:"></h:outputLabel>
                         <p:selectOneRadio value="#{usuarioBean.sexo}">
-                            <f:selectItem itemValue="m" itemLabel="masculino"></f:selectItem>
-                            <f:selectItem itemValue="f" itemLabel="feminino"></f:selectItem>
+                            <f:selectItem itemValue="M" itemLabel="Masculino"></f:selectItem>
+                            <f:selectItem itemValue="F" itemLabel="Feminino"></f:selectItem>
                         </p:selectOneRadio>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel value="Tipo"></h:outputLabel>
+                        <h:outputLabel value="Tipo:"></h:outputLabel>
                         <p:selectOneRadio value="#{usuarioBean.tipo}">
                             <f:selectItem itemValue="A" itemLabel="Aluno"></f:selectItem>
                             <f:selectItem itemValue="P" itemLabel="Professor"></f:selectItem>
@@ -80,9 +80,9 @@
                             <!--<f:converter converterId="dataConverter" />-->
                         <!--</p:calendar>-->
                     <!--</div>-->
-                    <p:commandButton styleClass="btn" update="formCadastro"
+                    <center><p:commandButton styleClass="btn" class="btn-large orange" update="formCadastro"
                                      action="#{usuarioBean.cadastrar}" value="Cadastrar">
-                    </p:commandButton>
+                    </p:commandButton></center>
 
                 </h:form>
             </div>
