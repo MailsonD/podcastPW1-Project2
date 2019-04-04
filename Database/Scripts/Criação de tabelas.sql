@@ -33,7 +33,8 @@ CREATE TABLE turma_virtual(
 );
 
 CREATE TABLE podcast(
-	audio VARCHAR(100) PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
+	audio VARCHAR(250),
 	titulo VARCHAR(30) NOT NULL,
 	categoria TEXT NOT NULL,
 	descricao TEXT,
@@ -46,13 +47,13 @@ CREATE TABLE podcast(
 );
 
 CREATE TABLE avalia_podcast(
-    id SERIAL,
+	id SERIAL,
 	usuario TEXT NOT NULL,
-	podcast VARCHAR(100) NOT NULL,
+	podcast INT NOT NULL,
 	comentario TEXT NOT NULL,
 	PRIMARY KEY (usuario,podcast,id),
 	FOREIGN KEY (usuario) REFERENCES usuario(email) ON UPDATE CASCADE ON DELETE CASCADE,
-	FOREIGN KEY (podcast) REFERENCES podcast(audio) ON DELETE CASCADE
+	FOREIGN KEY (podcast) REFERENCES podcast(id) ON DELETE CASCADE
 );
 
 CREATE TABLE participa_turma(
