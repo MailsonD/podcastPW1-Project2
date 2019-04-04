@@ -72,10 +72,9 @@
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>6.2</version>
+            <scope>compile</scope>
         </dependency>
-
-
-        <!-- PRIMEFACES ALL THEMES -->
+         <!--PRIMEFACES ALL THEMES-->
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>all-themes</artifactId>

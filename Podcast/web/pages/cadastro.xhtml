@@ -25,6 +25,7 @@
         <div class="row" style="height: 80%">
             <div class="col s4"></div>
             <div class="col s4">
+
                 <h:form id="formCadastro">
                     <div class="form-group">
                         <h:outputLabel value="E-mail:"></h:outputLabel>
@@ -62,20 +63,21 @@
                     </div>
                     <div class="form-group">
                         <h:outputLabel value="Tipo:"></h:outputLabel>
-                        <p:selectOneRadio value="#{usuarioBean.tipo}">
+                        <p:selectOneRadio styleClass="ui-radiobutton-box" value="#{usuarioBean.tipo}">
                             <f:selectItem itemValue="A" itemLabel="Aluno"></f:selectItem>
                             <f:selectItem itemValue="P" itemLabel="Professor"></f:selectItem>
                         </p:selectOneRadio>
                     </div>
-                    <!--<div class="form-group">-->
-                        <!--<h:outputLabel value="Data de nascimento"></h:outputLabel>-->
-                        <!--<p:calendar required="true" pattern="dd/MM/yyyy"-->
-                                    <!--requiredMessage="Data de nascimento obrigatória"-->
-                                    <!--value="#{usuarioBean.usuario.nascimento}">-->
-                            <!--<f:converter converterId="dataConverter" />-->
-                        <!--</p:calendar>-->
-                    <!--</div>-->
+                    <div class="form-group">
+                        <h:outputLabel value="Data de nascimento"></h:outputLabel>
+                        <p:calendar styleClass="ui-calendar" required="true" pattern="dd/MM/yyyy" mask="true" showOn="button"
+                                    requiredMessage="Data de nascimento obrigatória"
+                                    value="#{usuarioBean.usuario.nascimento}">
+                            <f:converter converterId="dataConverter" />
+                        </p:calendar>
+                    </div>
                   <p:commandButton styleClass="btn" update="formCadastro"
+
                                      action="#{usuarioBean.cadastrar}" value="Cadastrar">
                     </p:commandButton>
 
