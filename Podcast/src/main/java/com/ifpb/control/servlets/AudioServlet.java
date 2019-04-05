@@ -26,9 +26,9 @@ public class AudioServlet extends HttpServlet {
         try {
             Podcast podcast = ((PodcastDaoImpl) podcastDao).buscar(idProduto);
 
-            String imgPath = "/home/loopis/Documentos/Mailson/Pw/Projeto 2/audio/";
+            String audioPath = "/home/loopis/Documentos/Mailson/Pw/Projeto 2/audio/";
 
-            File audio = new File(imgPath + podcast.getAudioPath());
+            File audio = new File(audioPath + podcast.getAudioPath());
             if (audio.exists()) {
                 response.setContentType("audio/mp3");
                 response.getOutputStream().write(Files.readAllBytes(audio.toPath()));

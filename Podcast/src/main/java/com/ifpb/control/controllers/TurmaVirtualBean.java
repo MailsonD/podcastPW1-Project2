@@ -20,18 +20,12 @@ import java.util.List;
 @RequestScoped
 public class TurmaVirtualBean {
 
-    private String nome;
-    private String descricao;
-    private Usuario criador;
-    private List<Podcast> podcasts;
-    private List<Usuario> participantes;
+    private TurmaVirtual turmaVirtual;
     private TurmaVirtualDao turmaVirtualDao;
     private List<TurmaVirtual> turmas;
 
     @PostConstruct
     public void init(){
-        podcasts = new ArrayList<Podcast>();
-        participantes = new ArrayList<Usuario>();
         turmaVirtualDao = new TurmaVirtualDaoImpl();
         turmas = new ArrayList<TurmaVirtual>();
     }
@@ -54,13 +48,13 @@ public class TurmaVirtualBean {
         return "turmasvirtuais";
     }
 
-    public List<TurmaVirtual> listar (){
+    public void listar (){
         try {
-            return turmas = turmaVirtualDao.listar();
+            turmas = turmaVirtualDao.listar();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return turmas;
+
     }
 
     public String buscarTurma(String reference) throws DataAccessException {
@@ -109,4 +103,19 @@ public class TurmaVirtualBean {
         return "turmasvirtuais";
     }
 
+    public TurmaVirtual getTurmaVirtual() {
+        return turmaVirtual;
+    }
+
+    public void setTurmaVirtual(TurmaVirtual turmaVirtual) {
+        this.turmaVirtual = turmaVirtual;
+    }
+
+    public List<TurmaVirtual> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<TurmaVirtual> turmas) {
+        this.turmas = turmas;
+    }
 }
