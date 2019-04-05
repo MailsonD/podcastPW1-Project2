@@ -1,10 +1,13 @@
 package com.ifpb.control.controllers;
 
+import com.ifpb.control.util.FilePathUtil;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import java.beans.ConstructorProperties;
 import java.io.File;
 import java.nio.file.Path;
 
@@ -34,7 +37,9 @@ public class FileBean {
             pathImagem.mkdirs();
         }
         uploadAudioPath = pathAudio.getAbsolutePath();
+        FilePathUtil.setPathAudio(uploadAudioPath);
         uploadImagePath = pathImagem.getAbsolutePath();
+        FilePathUtil.setPathImagem(uploadImagePath);
     }
 
     public String getUploadAudioPath() {

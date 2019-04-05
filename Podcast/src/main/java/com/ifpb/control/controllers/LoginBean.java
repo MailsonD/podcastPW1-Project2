@@ -8,6 +8,7 @@ import com.ifpb.model.dao.interfaces.UsuarioDao;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -24,7 +25,6 @@ public class LoginBean {
     @PostConstruct
     public void init() {
         usuarioDao = new UsuarioDaoImpl();
-
     }
 
     public String efetuarLogin() throws DataAccessException {
