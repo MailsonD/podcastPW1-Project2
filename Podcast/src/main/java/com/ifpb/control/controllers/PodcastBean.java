@@ -38,7 +38,8 @@ public class PodcastBean {
 
     private Part audio;
 
-    private String audioPath;
+    @ManagedProperty("#{fileBean}")
+    private FileBean fileBean;
 
     private Pattern pattern = Pattern.compile("audio\\/.+");
 
@@ -52,39 +53,28 @@ public class PodcastBean {
     public void init(){
         podcast = new Podcast();
         podcastDao = new PodcastDaoImpl();
-        String realpath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("");
-        File filepath = new File(realpath);
-        Path p = filepath.toPath();
-        for(int i = 0;i<5;i++){
-            p = p.getParent();
-        }
-        File path = new File(p.toString()+"/audio");
-        if(!path.exists()){
-            path.mkdirs();
-        }
-        audioPath = path.getAbsolutePath();
-
     }
 
 
     public void upload(){
         String nomeArquivo = Timestamp.from(Instant.now()).toString() + "-" + audio.getSubmittedFileName();
+        log.info(nomeArquivo);
         try (InputStream file = audio.getInputStream()) {
-            Files.copy(file, new File(audioPath + "/" + nomeArquivo).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(file, new File(fileBean.getUploadAudioPath() + "/" + nomeArquivo).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
     }
 
     public void validateFile(FacesContext ctx,UIComponent comp,Object value) {
-        log.info(audioPath);
+        log.info(fileBean.getUploadAudioPath());
         List<FacesMessage> msgs = new ArrayList<>();
         Part file = (Part)value;
         log.severe(file.getContentType());
         String type = file.getContentType().split("/")[0];
         log.severe(type);
         log.severe(""+file.getSize());
-        if (file.getSize() > 1024 * 100) {
+        if (file.getSize() > 1024 * 1000) {
             msgs.add(new FacesMessage("O arquivo é muito grande!"));
         }
         if (!pattern.matcher(file.getContentType()).matches()) {
@@ -119,4 +109,13 @@ public class PodcastBean {
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
     }
+
+    public FileBean getFileBean() {
+        return fileBean;
+    }
+
+    public void setFileBean(FileBean fileBean) {
+        this.fileBean = fileBean;
+    }
+
 }
