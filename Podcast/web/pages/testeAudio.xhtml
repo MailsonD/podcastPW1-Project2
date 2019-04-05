@@ -6,9 +6,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 <f:view>
-    <p:media value="../../../../audio/2019-04-04 14:58:25.767115-logar.mp3" player="quicktime">
-        <f:param name="autoPlay" value="false" />
-    </p:media>
+    <!--<p:media value="/audio?idPodcast=1" player="quicktime">-->
+        <!--<f:param name="autoPlay" value="false" />-->
+    <!--</p:media>-->
+    <audio controls="true">
+        <source src="/audio?idPodcast=1"></source>
+    </audio>
+
 </f:view>
 <h:body>
 
