@@ -26,12 +26,14 @@ public class TurmaVirtualBean {
     private List<Podcast> podcasts;
     private List<Usuario> participantes;
     private TurmaVirtualDao turmaVirtualDao;
+    private List<TurmaVirtual> turmas;
 
     @PostConstruct
     public void init(){
         podcasts = new ArrayList<Podcast>();
         participantes = new ArrayList<Usuario>();
         turmaVirtualDao = new TurmaVirtualDaoImpl();
+        turmas = new ArrayList<TurmaVirtual>();
     }
 
     public String salvar(TurmaVirtual tv){
@@ -52,13 +54,13 @@ public class TurmaVirtualBean {
         return "turmasvirtuais";
     }
 
-    public String listar (){
+    public List<TurmaVirtual> listar (){
         try {
-            turmaVirtualDao.listar();
+            return turmas = turmaVirtualDao.listar();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return "turmasvirtuais";
+        return turmas;
     }
 
     public String buscarTurma(String reference) throws DataAccessException {

@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <h:head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,6 +16,7 @@
     <meta name="author" content="" />
 
     <title>Loja PWEB - Login</title>
+
 
 
 
@@ -34,22 +36,25 @@
     <f:view>
         <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IFCast</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Navbar Link</a></li>
-                </ul>
+                <!--<ul class="right hide-on-med-and-down">-->
+                    <!--<li><a href="#">Navbar Link</a></li>-->
+                <!--</ul>-->
 
-                <ul id="nav-mobile" class="sidenav">
-                    <li><a href="#">Navbar Link</a></li>
-                </ul>
+                <!--<ul id="nav-mobile" class="sidenav">-->
+                    <!--<li><a href="#">Navbar Link</a></li>-->
+                <!--</ul>-->
                 <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             </div>
         </nav>
+        <!--<audio controls="x">-->
+            <!--<source src="/audio/2019-04-04 14:58:25.767115-logar.mp3" type="audio/mp3" />-->
+        <!--</audio>-->
         <div class="section no-pad-bot" id="index-banner">
-            <div class="container">
+            <div class="container center-align">
                 <br/><br/>
                 <h1 class="header center orange-text">Conecte-se ao IFCast</h1>
                 <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a><br/>
-                ou<br/>
+                ou<br/><br/>
                 <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Cadastre-se</a>
 
 
@@ -59,42 +64,8 @@
         </div>
 
 
-        <div class="container">
-            <div class="section">
 
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                            <h5 class="center">Speeds up development</h5>
 
-                            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                            <h5 class="center">User Experience Focused</h5>
-
-                            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                            <h5 class="center">Easy to work with</h5>
-
-                            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <br/><br/>
-        </div>
 
 
 
@@ -194,7 +165,30 @@
                     </div>
 
                 </div>
-
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">IFCast</h5>
+                        <p class="grey-text text-lighten-4">coloquem algo legal aq pls</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">GitHub</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/antonioads2017">Antônio Filho</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/camilacarwalho">Camila Carvalho</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/eduulucas">Eduardo Lucas</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/mailsond">Mailson Dennis</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2019 Copyright IFCast
+                </div>
+            </div>
+        </footer>
 
 
     </f:view>

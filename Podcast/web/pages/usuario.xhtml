@@ -35,70 +35,70 @@
 <h:body >
 <f:view>
 
-    <h:form>
-        <p:growl id="messages"/>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo">IFCast</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="usuario.xhtml">Usuário</a></li>
 
-        <p:menubar>
-            <p:submenu label="IFCast" url="timeline.xhtml" >
-                <p:menuitem value="Home" url="timeline.xhtml"/>
-                <p:menuitem value="Usuário" url="usuario.xhtml" />
-
-                <p:menuitem value="Turmas Virtuais" url="#" />
-                <p:separator />
-                <p:menuitem value="Upload" url="#" />
-
-            </p:submenu>
+                <li><a href="#">Turmas Virtuais</a></li>
+                <li><a href="uploadPodcast.xhtml">Upload</a></li>
+            </ul>
 
 
-            <p:menuitem value="Sair" url="http://www.primefaces.org" />
-
-            <f:facet name="options">
-                <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
-
-            </f:facet>
-        </p:menubar>
-    </h:form>
-    <div class="row">
-            <div class="col s12 m4 l1"></div>
-            <div class="col s12 m4 l9"><p>
-                <h:form>
-                    <p:growl id="perfil" showDetail="true" />
-
-                    <p:fieldset legend="Meus dados" style="margin-bottom:20px">
-                        <h:panelGrid >
-                            <p:column rowpan="5" styleClass="center-align">
-                                <p:graphicImage url="../assets/img/default.jpg" width="200px" height="200px" styleClass="center-align" />
-                            </p:column>
-                            <h:outputText value="Nome" />
-
-                            <h:outputText value="Telefone" />
-
-                            <h:outputText value="Data de Nacimento" />
-                            <h:outputText value="E-mail" />
-                        </h:panelGrid>
-                    </p:fieldset>
-
-                </h:form>
-                <h:form>
-                    <p:growl id="configuracoes" showDetail="true" />
-
-                    <p:fieldset legend="Configurações" style="margin-bottom:20px">
-                        <h:panelGrid >
-                            <p:column rowpan="4">
-                                <p:graphicImage url="../assets/img/default.jpg" width="200px" height="200px" />
-                            </p:column>
-                            <h:outputText value="Nome" />
-
-                            <h:outputText value="Telefone" />
-
-                            <h:outputText value="Data de Nacimento" />
-                            <h:outputText value="E-mail" />
-                        </h:panelGrid>
-                    </p:fieldset>
-
-                </h:form></p></div>
-            <div class="col s12 m4 l1"></div>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
+    </nav>
+        <div class="col s12 m10">
+            <div class="card blue-grey darken-3">
+                <div class="card-content white-text">
+                    <span class="card-title">Meus Dados</span>
+                    <p>Nome:</p>
+                    <p>E-mail:</p>
+                    <p>Data de Nascimento:</p>
+                    <p>Telefone:</p>
+                </div>
+
+            </div>
+        </div>
+        <br/>
+        <div class="col s12 m10">
+            <div class="card blue-grey darken-3">
+                <div class="card-content white-text">
+                    <span class="card-title">Configurações:</span>
+                    <p>Nome:</p>
+                    <p>E-mail:</p>
+                    <p>Data de Nascimento:</p>
+                    <p>Telefone:</p>
+                    <a class="btn large orange">Salvar | Editar</a>
+                </div>
+
+            </div>
+        </div>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">IFCast</h5>
+                    <p class="grey-text text-lighten-4">coloquem algo legal aq pls</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">GitHub</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/antonioads2017">Antônio Filho</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/camilacarwalho">Camila Carvalho</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/eduulucas">Eduardo Lucas</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/mailsond">Mailson Dennis</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2019 Copyright IFCast
+            </div>
+        </div>
+    </footer>
+
 
 
 </f:view>
