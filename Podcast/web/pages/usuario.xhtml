@@ -107,7 +107,7 @@
                 <h:form prependId="false" id="form">
                     <p:toolbar>
                         <f:facet name="right">
-                            <p:commandButton value="Excluir" action="#{usuarioBean.remover()}" ajax="true">
+                            <p:commandButton value="Excluir" action="#{usuarioBean.remover()}" ajax="true" update="usuarios">
                                 <p:confirm header="Confirmação"
                                            message="Tem certeza que deseja remover esse usuario?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{usuario}"
