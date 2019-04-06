@@ -70,7 +70,7 @@ public class PodcastBean {
         log.info(fileBean.getUploadAudioPath());
         List<FacesMessage> msgs = new ArrayList<>();
         Part file = (Part)value;
-        log.severe(file.getContentType());
+        log.info(file.getContentType());
         String type = file.getContentType().split("/")[0];
         log.severe(type);
         log.severe(""+file.getSize());
