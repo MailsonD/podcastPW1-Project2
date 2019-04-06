@@ -56,7 +56,7 @@
                     <p>Data de Nascimento:</p>
                     <p>Telefone:</p><br/>
                     <h:panelGrid columns="1" cellpadding="5">
-                        <p:commandButton value="Editar" type="button" onclick="PF('dlg2').show();" />
+                        <p:commandButton value="Gêrencia de Usuário" type="button" onclick="PF('dlg2').show();" />
                     </h:panelGrid>
                 </div>
 
@@ -65,22 +65,36 @@
 
     <!-- Modal Structure -->
 
-    <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
-        <p:dataTable>
+    <p:dialog header="Gêrencia de Usuários" widgetVar="dlg2" modal="true" height="100">
+        <p:dataTable  var="usuario" id="usuarios" value="#{usuarioBean.usuarios}" styleClass="order-table"
+        headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row" >
             <p:column headerText="Nome:">
-                <h:outputText/>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+
+                    </f:facet>
+                <h:outputText value="#{usuario.nome}"/>
             </p:column>
 
             <p:column headerText="E-mail:">
-                <h:outputText/>
+                <f:facet name="header">
+                    <h:outputText value="E-mail"/>
+                </f:facet>
+                <h:outputText value="#{usuario.email}"/>
             </p:column>
 
             <p:column headerText="Data de Nascimento:">
-                <h:outputText/>
+                <f:facet name="header">
+                    <h:outputText value="Data de Nascimento"/>
+                </f:facet>
+                <h:outputText value="#{usuario.nascimento}"/>
             </p:column>
 
             <p:column headerText="Telefone">
-                <h:outputText/>
+                <f:facet name="header">
+                    <h:outputText value="Telefone"/>
+                </f:facet>
+                <h:outputText value="#{usuario.telefone}"/>
             </p:column>
         </p:dataTable>
     </p:dialog>
