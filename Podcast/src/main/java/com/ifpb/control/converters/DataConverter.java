@@ -26,7 +26,7 @@ public class DataConverter implements Converter {
 
         LocalDate localDate = (LocalDate) value;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String data = LocalDateTime.from(localDate).format(formatter);
+        String data = LocalDate.from(localDate).format(formatter);
         return data;
     }
 

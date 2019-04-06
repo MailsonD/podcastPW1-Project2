@@ -21,10 +21,6 @@ public class UsuarioBean {
 
     private Usuario usuario;
 
-    private String sexo;
-
-    private String tipo;
-
     private List<Usuario> usuarios;
 
     @PostConstruct
@@ -34,25 +30,15 @@ public class UsuarioBean {
         listar();
     }
 
-    public void cadastrar(){
+    public String cadastrar(){
         try {
             usuario.setNivelAcesso(NivelAcesso.USER);
-            if(sexo.equals("f")){
-                usuario.setSexo(Sexo.FEMININO);
-            }else{
-                usuario.setSexo(Sexo.MASCULINO);
-            }
-            if(tipo.equals("A")){
-                usuario.setTipo(Tipo.ALUNO);
-            }else{
-                usuario.setTipo(Tipo.PROFESSOR);
-            }
-            usuario.setNascimento(LocalDate.now());
             usuarioDao.salvar(usuario);
             System.out.println("cadastrado");
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     public void listar(){
@@ -80,22 +66,6 @@ public class UsuarioBean {
         this.usuario = usuario;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -103,4 +73,5 @@ public class UsuarioBean {
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+
 }
