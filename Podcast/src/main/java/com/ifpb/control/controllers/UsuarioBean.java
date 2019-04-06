@@ -57,6 +57,14 @@ public class UsuarioBean {
             e.printStackTrace();
         }
     }
+    public void setAdmin(){
+        try {
+            usuarioDao.setAdmin(usuario.getEmail());
+            listar();
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Usuario getUsuario() {
         return usuario;
