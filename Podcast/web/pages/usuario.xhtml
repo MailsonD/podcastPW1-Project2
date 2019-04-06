@@ -107,12 +107,19 @@
                 <h:form prependId="false" id="form">
                     <p:toolbar>
                         <f:facet name="right">
+                            <p:commandButton rendered="#{usuario.nivelAcesso=='USER'}" value="Tornar" action="#{usuarioBean.setAdmin}" ajax="true" update="usuarios">
+                                <p:confirm header="Confirmação"
+                                           message="Tem certeza que deseja tornar administrador o usuario #{usuario.nome} ?" icon="ui-icon-alert" />
+                                <f:setPropertyActionListener value="#{usuario}"
+                                                             target="#{usuarioBean.usuario}" />
+                            </p:commandButton>
                             <p:commandButton value="Excluir" action="#{usuarioBean.remover()}" ajax="true" update="usuarios">
                                 <p:confirm header="Confirmação"
                                            message="Tem certeza que deseja remover esse usuario?" icon="ui-icon-alert" />
                                 <f:setPropertyActionListener value="#{usuario}"
                                                              target="#{usuarioBean.usuario}" />
                             </p:commandButton>
+
                             <p:confirmDialog closeOnEscape="true" appendTo="@(body)"
                                              global="true" showEffect="fade" hideEffect="fade">
                                 <p:commandButton value="Sim"
