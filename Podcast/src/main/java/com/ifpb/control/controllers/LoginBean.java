@@ -27,12 +27,19 @@ public class LoginBean {
         usuarioDao = new UsuarioDaoImpl();
     }
 
-    public String efetuarLogin() throws DataAccessException {
+    public String efetuarLogin(){
 
-        if(!usuarioDao.autenticarUsuario(email,senha)){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos", "Login ou senha inválidos"));
+        try {
+            if(!usuarioDao.autenticarUsuario(email,senha)){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos", "Login ou senha inválidos"));
+                return "";
+            }
+        } catch (DataAccessException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro interno", "Erro interno"));
             return "";
-        }return "home";
+        }
+        senha = null;
+        return "home";
 
     }
 
