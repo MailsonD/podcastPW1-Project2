@@ -49,6 +49,15 @@ public class UsuarioBean {
         }
     }
 
+    public void remover(){
+        try {
+            usuarioDao.remover(usuario.getEmail());
+            listar();
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
