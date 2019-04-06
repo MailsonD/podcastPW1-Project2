@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.time.LocalDate;
+import java.util.List;
 
 @ManagedBean
 @RequestScoped
@@ -20,10 +21,13 @@ public class UsuarioBean {
 
     private Usuario usuario;
 
+    private List<Usuario> usuarios;
+
     @PostConstruct
     public void init() {
         usuarioDao = new UsuarioDaoImpl();
         usuario = new Usuario();
+        listar();
     }
 
     public String cadastrar(){
@@ -37,6 +41,14 @@ public class UsuarioBean {
         return "";
     }
 
+    public void listar(){
+        try {
+            this.usuarios = usuarioDao.listar();
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -44,5 +56,13 @@ public class UsuarioBean {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
 }
