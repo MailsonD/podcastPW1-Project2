@@ -15,18 +15,25 @@ public class DataConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String data) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(data, formatter);
+        LocalDate localDate = null;
+        if(data!=null && !data.isEmpty()){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            localDate = LocalDate.parse(data, formatter);
+        }
 
         return localDate;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        String data = null;
 
-        LocalDate localDate = (LocalDate) value;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String data = LocalDate.from(localDate).format(formatter);
+        if(value!=null){
+            LocalDate localDate = (LocalDate) value;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            data = LocalDate.from(localDate).format(formatter);
+        }
+        
         return data;
     }
 
