@@ -29,16 +29,16 @@ public class AudioServlet extends HttpServlet {
 
         PodcastDao podcastDao = new PodcastDaoImpl();
 
-        int idProduto = Integer.parseInt(request.getParameter("idPodcast"));
+        int idPodcast = Integer.parseInt(request.getParameter("idPodcast"));
 
         try {
-            Podcast podcast = ((PodcastDaoImpl) podcastDao).buscar(idProduto);
+            Podcast podcast = ((PodcastDaoImpl) podcastDao).buscar(idPodcast);
 
             String audioPath = FilePathUtil.getPathAudio();
 
             log.info(audioPath);
 
-            File audio = new File(audioPath +"/"+podcast.getAudioPath()+".mp3");
+            File audio = new File(audioPath +"/"+podcast.getAudioPath());
             if (audio.exists()) {
                 response.setContentType("audio/mp3");
                 response.getOutputStream().write(Files.readAllBytes(audio.toPath()));
