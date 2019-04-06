@@ -50,6 +50,34 @@
         </div>
     </nav>
    <h4 class="center-align">Gerência de Usuários</h4>
+    <div class="container">
+        <ul class="collection">
+            <li class="collection-item">
+                <p>Nome:</p><br/>
+                <p>E-mail:</p><br/>
+                <a class="btn modal-trigger" href="#confirmaAdmin">Tornar admin</a>
+                <a class="btn modal-trigger" href="#confirmaExcluir">Excluir</a>
+
+            </li>
+            <li class="collection-item">Alvin</li>
+        </ul>
+    </div>
+
+    
+    <!-- Modal de confirmação -->
+    <div id="confirmaAdmin" class="modal">
+        <div class="modal-content">
+oi
+        </div></div>
+    <!-- Modal de confirmação -->
+    <div id="confirmaExcluir" class="modal">
+        <div class="modal-content">
+            oi
+        </div></div>
 </f:view>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('.modal').modal();
+    });</script>
 </h:body>
 </html>
