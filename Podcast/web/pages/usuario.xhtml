@@ -39,13 +39,9 @@
         <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo">IFCast</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="usuario.xhtml">Usuário</a></li>
-
                 <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
                 <li><a href="uploadPodcast.xhtml">Upload</a></li>
             </ul>
-
-
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
     </nav>
         <div class="col s12 m10">
@@ -55,25 +51,37 @@
                     <p>Nome:</p>
                     <p>E-mail:</p>
                     <p>Data de Nascimento:</p>
-                    <p>Telefone:</p>
+                    <p>Telefone:</p><br/>
+                    <h:panelGrid columns="1" cellpadding="5">
+                        <p:commandButton value="Editar" type="button" onclick="PF('dlg2').show();" />
+                    </h:panelGrid>
                 </div>
 
             </div>
         </div>
-        <br/>
-        <div class="col s12 m10">
-            <div class="card blue-grey darken-3">
-                <div class="card-content white-text">
-                    <span class="card-title">Configurações:</span>
-                    <p>Nome:</p>
-                    <p>E-mail:</p>
-                    <p>Data de Nascimento:</p>
-                    <p>Telefone:</p>
-                    <a class="btn large orange">Salvar | Editar</a>
-                </div>
 
-            </div>
-        </div>
+    <!-- Modal Structure -->
+
+    <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+        <p:dataTable>
+            <p:column headerText="Nome:">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="E-mail:">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Data de Nascimento:">
+                <h:outputText/>
+            </p:column>
+
+            <p:column headerText="Telefone">
+                <h:outputText/>
+            </p:column>
+        </p:dataTable>
+    </p:dialog>
+    <br/>
     <footer class="page-footer">
         <div class="container">
             <div class="row">
@@ -98,6 +106,12 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        $(document).ready(function(){
+            $('.materialboxed').materialbox();
+        });
+    </script>
 
 
 
