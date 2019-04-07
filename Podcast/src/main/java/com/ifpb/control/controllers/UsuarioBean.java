@@ -36,7 +36,6 @@ public class UsuarioBean {
         try {
             usuario.setNivelAcesso(NivelAcesso.USER);
             usuarioDao.salvar(usuario);
-            System.out.println("cadastrado");
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

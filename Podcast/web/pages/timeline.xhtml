@@ -8,84 +8,32 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<h:head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <ui:composition template="layout-principal.xhtml">
+        <ui:define name="conteudo">
 
-    <title>IFCast</title>
+            <div class="col s12 m7">
 
+                <div class="card">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="../assets/img/m.png"  style="width: 200px;"/>
 
-<style type="text/css">
-    #overflowTest {
+                        </div>
 
-        padding: 15px;
-        width: 100%;
-        height: 150px;
-        overflow: scroll;
+                        <div class="card-content">
 
-    }
-</style>
-
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-    <!-- Compiled and minified CSS -->
-    <h:outputStylesheet name="css/materialize.css"></h:outputStylesheet>
-    <h:outputStylesheet name="css/materialize.min.css"></h:outputStylesheet>
-
-
-
-</h:head>
-
-<h:body >
-<f:view>
-    <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IFCast</a>
-            <ul class="right hide-on-med-and-down">
-            <li><a href="usuario.xhtml">Usuário</a></li>
-
-                <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
-                <li><a href="uploadPodcast.xhtml">Upload</a></li>
-
-                <li>
-                    <h:form>
-                        <h:commandLink action="#{loginBean.logout}"><i class="material-icons">settings_power</i></h:commandLink>
-                    </h:form>
-                </li>
-            </ul>
-
-
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        </div>
-    </nav>
-
-    <div class="col s12 m7">
-
-        <div class="card">
-            <div class="card horizontal">
-            <div class="card-image">
-                <img src="../assets/img/m.png"  style="width: 200px;"/>
-
-            </div>
-
-                <div class="card-content">
-
-                    <h5>Título</h5>
-                    <p>Descrição</p>
-                    <p>Postado por:</p>
-                    <a class="btn red float white-text"><i class="material-icons white-text">play_arrow</i></a><br/>
-                </div>
-        </div>
-<h6>Comentários:</h6>
+                            <h5>Título</h5>
+                            <p>Descrição</p>
+                            <p>Postado por:</p>
+                            <a class="btn red float white-text"><i class="material-icons white-text">play_arrow</i></a><br/>
+                        </div>
+                    </div>
+                    <h6>Comentários:</h6>
                     <div id="overflowTest">
 
                         <ul class="collection">
                             <li class="collection-item">Comentário 1
-                            <br/><p>Autor</p></li>
+                                <br/><p>Autor</p></li>
                             <li class="collection-item">Comentário 2
                                 <br/><p>Autor</p></li>
                         </ul>
@@ -97,40 +45,13 @@
                             </div>
                         </div>
 
-                </div>
+                    </div>
 
 
-        </div>
+                </div>
 
-    </div>
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">IFCast</h5>
-                    <p class="grey-text text-lighten-4">Projeto da disciplina de Programação Web 1 do professor Diego - IFPB</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">GitHub</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/antonioads2017">Antônio Filho</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/camilacarwalho">Camila Carvalho</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/eduulucas">Eduardo Lucas</a></li>
-                        <li><a class="grey-text text-lighten-3" href="https://www.github.com/mailsond">Mailson Dennis</a></li>
-                    </ul>
-                </div>
             </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © 2019 Copyright IFCast
-            </div>
-        </div>
-    </footer>
+        </ui:define>
+    </ui:composition>
 
-    <h:outputScript name="js/materialize.js"></h:outputScript>
-    <h:outputScript name="js/materialize.min.js"></h:outputScript>
-</f:view>
-
-</h:body>
 </html>

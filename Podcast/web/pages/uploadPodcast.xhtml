@@ -7,121 +7,54 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <title>Loja PWEB - Login</title>
-
-    <!-- Compiled and minified CSS -->
-    <h:outputStylesheet name="css/materialize.css"></h:outputStylesheet>
-    <h:outputStylesheet name="css/materialize.min.css"></h:outputStylesheet>
-    <!-- Compiled and minified JavaScript -->
-
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-
-
-</h:head>
-
-<h:body >
-    <f:view>
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IFCast</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="usuario.xhtml">Usuário</a></li>
-
-                    <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
-                    <li><a href="uploadPodcast.xhtml">Upload</a></li>
-
-                    <li>
-                        <h:form>
-                            <h:commandLink action="#{loginBean.logout}"><i class="material-icons">settings_power</i></h:commandLink>
-                        </h:form>
-                    </li>
-                </ul>
-
-
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
-        <div class="row" style="height: 40%"></div>
-        <div class="row" >
-            <div class="col s4"></div>
-            <div class="col s4">
-                <h:form id="formUpload" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <h:outputLabel value="Título"></h:outputLabel>
-                        <p:inputText id="titulo" required="true"  value="#{podcastBean.podcast.titulo}"
-                                     requiredMessage="Título obrigatório"
-                                     styleClass="form-control form-control-user">
-                        </p:inputText>
-                        <p:message for="titulo" />
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel value="Categoria"></h:outputLabel>
-                        <p:inputText id="categoria" required="true" value="#{podcastBean.podcast.categoria}"
-                                    requiredMessage="Categoria obrigatória"
-                                    styleClass="form-control form-control-user" >
-                        </p:inputText>
-                        <p:message for="categoria" />
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel value="Descrição"></h:outputLabel>
-                        <p:inputText id="descricao" required="true" value="#{podcastBean.podcast.descricao}"
-                                     requiredMessage="Descrição obrigatória"
-                                     styleClass="form-control form-control-user" >
-                        </p:inputText>
-                        <p:message for="descricao" />
-                    </div>
-                    <div class="form-group">
+    <ui:composition template="layout-principal.xhtml">
+        <ui:define name="conteudo">
+            <div class="row" style="height: 40%"></div>
+            <div class="row" >
+                <div class="col s4"></div>
+                <div class="col s4">
+                    <h:form id="formUpload" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h:outputLabel value="Título"></h:outputLabel>
+                            <p:inputText id="titulo" required="true"  value="#{podcastBean.podcast.titulo}"
+                                         requiredMessage="Título obrigatório"
+                                         styleClass="form-control form-control-user">
+                            </p:inputText>
+                            <p:message for="titulo" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Categoria"></h:outputLabel>
+                            <p:inputText id="categoria" required="true" value="#{podcastBean.podcast.categoria}"
+                                         requiredMessage="Categoria obrigatória"
+                                         styleClass="form-control form-control-user" >
+                            </p:inputText>
+                            <p:message for="categoria" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel value="Descrição"></h:outputLabel>
+                            <p:inputText id="descricao" required="true" value="#{podcastBean.podcast.descricao}"
+                                         requiredMessage="Descrição obrigatória"
+                                         styleClass="form-control form-control-user" >
+                            </p:inputText>
+                            <p:message for="descricao" />
+                        </div>
+                        <div class="form-group">
+                            <br/>
+                            <h:outputLabel value="Audio" /><br/>
+                            <h:inputFile id="arquivo" validator="#{podcastBean.validateFile}" value="#{podcastBean.audio}" required="true" requiredMessage="É necessário selecionar um arquivo" />
+                            <p:message  for="arquivo" />
+                        </div>
                         <br/>
-                        <h:outputLabel value="Audio" /><br/>
-                        <h:inputFile id="arquivo" validator="#{podcastBean.validateFile}" value="#{podcastBean.audio}" required="true" requiredMessage="É necessário selecionar um arquivo" />
-                        <p:message  for="arquivo" />
-                    </div>
-                    <br/>
-                    <p:commandButton styleClass="btn" class="large orange" update="formUpload"
-                                     action="#{podcastBean.upload}" value="Realizar upload" ajax="false">
-                    </p:commandButton>
+                        <p:commandButton styleClass="btn" class="large orange" update="formUpload"
+                                         action="#{podcastBean.upload}" value="Realizar upload" ajax="false">
+                        </p:commandButton>
 
-                </h:form>
-            </div>
-            <div class="col s4"></div>
-        </div>
-        <div class="row" style="height: 40%"></div>
-        <footer class="page-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">IFCast</h5>
-                        <p class="grey-text text-lighten-4">Projeto da disciplina de Programação Web 1 do professor Diego - IFPB</p>
-                    </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">GitHub</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/antonioads2017">Antônio Filho</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/camilacarwalho">Camila Carvalho</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/eduulucas">Eduardo Lucas</a></li>
-                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/mailsond">Mailson Dennis</a></li>
-                        </ul>
-                    </div>
+                    </h:form>
                 </div>
+                <div class="col s4"></div>
             </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    © 2019 Copyright IFCast
-                </div>
-            </div>
-        </footer>
-    </f:view>
+            <div class="row" style="height: 40%"></div>
 
-    <h:outputScript name="js/materialize.js"></h:outputScript>
-    <h:outputScript name="js/materialize.min.js"></h:outputScript>
-
-</h:body>
+        </ui:define>
+    </ui:composition>
 </html>

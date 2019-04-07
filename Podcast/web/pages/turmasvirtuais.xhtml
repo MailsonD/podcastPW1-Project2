@@ -5,185 +5,127 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:p="http://primefaces.org/ui"
->
-<h:head>
+      xmlns:p="http://primefaces.org/ui">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <ui:composition template="layout-principal.xhtml">
+        <ui:define name="conteudo">
+            <style type="text/css">
+                .logo {
+                    width: 5%
+                }
 
-    <title>IFCast - Turmas virtuais</title>
+                .detail {
+                    width: 95%;
+                    padding-left: 25px;
+                }
 
-    <!-- Compiled and minified CSS -->
-    <!-- Compiled and minified CSS -->
-    <h:outputStylesheet name="css/materialize.css"></h:outputStylesheet>
-    <h:outputStylesheet name="css/materialize.min.css"></h:outputStylesheet>
+                .detail td {
+                    font-size: 24px;
+                }
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-    <style type="text/css">
-        .logo {
-            width: 5%
-        }
-
-        .detail {
-            width: 95%;
-            padding-left: 25px;
-        }
-
-        .detail td {
-            font-size: 24px;
-        }
-
-        .ui-datascroller .ui-datascroller-item {
-            border-bottom: 1px solid #A8A8A8;
-            padding: 25px 10px;
-            /* with the exported variables from Nova and Luna Themes*/
-            border-bottom-color: var(--input-border-color, #A8A8A8);
-        }
-    </style>
-
-    </h:head>
-    <h:body>
-        <f:view>
-            <header>
-                <nav class="light-blue lighten-1" role="navigation">
-                    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IFCast</a>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="usuario.xhtml">Usuário</a></li>
-
-                            <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
-                            <li><a href="uploadPodcast.xhtml">Upload</a></li>
-
-                            <li>
-                                <h:form>
-                                    <h:commandLink action="#{loginBean.logout}"><i class="material-icons">settings_power</i></h:commandLink>
-                                </h:form>
-                            </li>
-                        </ul>
+                .ui-datascroller .ui-datascroller-item {
+                    border-bottom: 1px solid #A8A8A8;
+                    padding: 25px 10px;
+                    /* with the exported variables from Nova and Luna Themes*/
+                    border-bottom-color: var(--input-border-color, #A8A8A8);
+                }
+            </style>
 
 
-                        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    </div>
-                </nav>
-            </header>
+
             <div class="row">
                 <div class="col s12">
 
 
 
 
-            <div class="card">
-    <div class="card-title">Turmas Virtuais</div>
-    <div class="card-content"><h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}" ><p>As Turmas Virtuais permitem que qualquer professor possa criar suas turmas utilizando a nossa plataforma.
-        Aqui, você professor, poderá gerênciar sua turma e alunos participantes, assim como disponibilizar podcasts para os mesmos.</p></h:commandLink></div>
-    <div class="col s12">
-        <ul class="tabs">
-            <li class="tab col s3"><a class="active" href="#test1">Suas turmas</a></li>
-            <li class="tab col s3"><h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}"> <a  href="#test2">Criar turma</a></h:commandLink></li>
-        </ul>
-    </div>
-
-    <h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}" ><div id="test2" class="col s12">
-        <p>Título da turma:</p> <h:inputText/>
-        <p>Descrição:</p> <h:inputText/>
-        <div class="col s6"><ul>
-            <li>
-                <p>Alunos adicionados:</p>
-                <ul class="collection">
-                    <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
-                        <span class="title">Nome</span>
-                        <p>E-mail
-                        </p>
-                        <a class="btn small blue">Remover</a></li>
-
-                </ul>
-
-            </li></ul></div>
-        <div class="col s6"> <ul><li><p>Todos os alunos:</p>
-
-            <ul class="collection">
-                <ui:repeat  value="#{usuarioBean.alunos}" var="aluno">
-                <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
-                    <span class="title">#{aluno.nome} </span>
-                    <p>#{aluno.email} </p>
-                <a class="btn small blue">Adicionar</a></li>
-                </ui:repeat>
-            </ul>
-        </li>
-        </ul></div>
-        <center>
-        <a class="btn large orange center-align">Criar</a>
-    </center>
-
-
-    </div></h:commandLink>
-
-</div>
-            <div id="test1" class="col s12">
-            <h:form>
-                <p:dataScroller value="#{turmaVirtualBean.turmas}" var="car" chunkSize="10">
-                    <f:facet name="header">
-                        Desça para que apareça mais turmas:
-                    </f:facet>
-
-                    <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-<!--                        <p:graphicImage name="demo/images/car/#{car.brand}-big.gif" />-->
-
-                        <p:outputPanel>
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <h:outputText value="Título:" />
-                                <h:outputText value="#{turmaVirtualBean.turmaVirtual.nome}" style="font-weight: bold"/>
-
-                                <h:outputText value="Descrição:" />
-                                <h:outputText value="#{turmaVirtualBean.turmaVirtual.descricao}" style="font-weight: bold"/>
-
-                                <h:outputText value="Criador:" />
-                                <h:outputText value="#{turmaVirtualBean.turmaVirtual.criador.nome}" style="font-weight: bold"/>
-                            </h:panelGrid>
-                        </p:outputPanel>
-                    </h:panelGrid>
-                </p:dataScroller>
-            </h:form>
-            </div></div></div>
-
-            <footer class="page-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col l6 s12">
-                            <h5 class="white-text">IFCast</h5>
-                            <p class="grey-text text-lighten-4">Projeto da disciplina de Programação Web 1 do professor Diego - IFPB</p>
-                        </div>
-                        <div class="col l4 offset-l2 s12">
-                            <h5 class="white-text">GitHub</h5>
-                            <ul>
-                                <li><a class="grey-text text-lighten-3" href="https://www.github.com/antonioads2017">Antônio Filho</a></li>
-                                <li><a class="grey-text text-lighten-3" href="https://www.github.com/camilacarwalho">Camila Carvalho</a></li>
-                                <li><a class="grey-text text-lighten-3" href="https://www.github.com/eduulucas">Eduardo Lucas</a></li>
-                                <li><a class="grey-text text-lighten-3" href="https://www.github.com/mailsond">Mailson Dennis</a></li>
+                    <div class="card">
+                        <div class="card-title">Turmas Virtuais</div>
+                        <div class="card-content"><h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}" ><p>As Turmas Virtuais permitem que qualquer professor possa criar suas turmas utilizando a nossa plataforma.
+                            Aqui, você professor, poderá gerênciar sua turma e alunos participantes, assim como disponibilizar podcasts para os mesmos.</p></h:commandLink></div>
+                        <div class="col s12">
+                            <ul class="tabs">
+                                <li class="tab col s3"><a class="active" href="#test1">Suas turmas</a></li>
+                                <li class="tab col s3"><h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}"> <a  href="#test2">Criar turma</a></h:commandLink></li>
                             </ul>
                         </div>
+
+                        <h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}" ><div id="test2" class="col s12">
+                            <p>Título da turma:</p> <h:inputText/>
+                            <p>Descrição:</p> <h:inputText/>
+                            <div class="col s6"><ul>
+                                <li>
+                                    <p>Alunos adicionados:</p>
+                                    <ul class="collection">
+                                        <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
+                                            <span class="title">Nome</span>
+                                            <p>E-mail
+                                            </p>
+                                            <a class="btn small blue">Remover</a></li>
+
+                                    </ul>
+
+                                </li></ul></div>
+                            <div class="col s6"> <ul><li><p>Todos os alunos:</p>
+
+                                <ul class="collection">
+                                    <ui:repeat  value="#{usuarioBean.alunos}" var="aluno">
+                                        <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
+                                            <span class="title">#{aluno.nome} </span>
+                                            <p>#{aluno.email} </p>
+                                            <a class="btn small blue">Adicionar</a></li>
+                                    </ui:repeat>
+                                </ul>
+                            </li>
+                            </ul></div>
+                            <center>
+                                <a class="btn large orange center-align">Criar</a>
+                            </center>
+
+
+                        </div></h:commandLink>
+
                     </div>
-                </div>
-                <div class="footer-copyright">
-                    <div class="container">
-                        © 2019 Copyright IFCast
-                    </div>
-                </div>
-            </footer>
+                    <div id="test1" class="col s12">
+                        <h:form>
+                            <p:dataScroller value="#{turmaVirtualBean.turmas}" var="car" chunkSize="10">
+                                <f:facet name="header">
+                                    Desça para que apareça mais turmas:
+                                </f:facet>
 
-        </f:view>
+                                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                                    <!--                        <p:graphicImage name="demo/images/car/#{car.brand}-big.gif" />-->
 
-        <h:outputScript name="js/materialize.js"></h:outputScript>
-        <h:outputScript name="js/materialize.min.js"></h:outputScript>
-        <script type="text/javascript">
+                                    <p:outputPanel>
+                                        <h:panelGrid columns="2" cellpadding="5">
+                                            <h:outputText value="Título:" />
+                                            <h:outputText value="#{turmaVirtualBean.turmaVirtual.nome}" style="font-weight: bold"/>
 
-            $(document).ready(function(){
-                $('.tabs').tabs();
-            });
-        </script>
-    </h:body>
+                                            <h:outputText value="Descrição:" />
+                                            <h:outputText value="#{turmaVirtualBean.turmaVirtual.descricao}" style="font-weight: bold"/>
+
+                                            <h:outputText value="Criador:" />
+                                            <h:outputText value="#{turmaVirtualBean.turmaVirtual.criador.nome}" style="font-weight: bold"/>
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </h:panelGrid>
+                            </p:dataScroller>
+                        </h:form>
+                    </div></div></div>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('.materialboxed').materialbox();
+                });
+                $(document).ready(function(){
+                    $('.tabs').tabs();
+                });
+                $(document).ready(function(){
+                    $('.modal').modal();
+                });
+            </script>
+            
+        </ui:define>
+    </ui:composition>
+
 </html>
