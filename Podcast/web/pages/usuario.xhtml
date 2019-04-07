@@ -230,12 +230,15 @@
             </div>
         </div>
     </footer>
-
+    <h:outputScript name="js/jquery-3.3.1.js"></h:outputScript>
     <h:outputScript name="js/materialize.js"></h:outputScript>
     <h:outputScript name="js/materialize.min.js"></h:outputScript>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.materialboxed').materialbox();
+        });
+        $(document).ready(function(){
+            $('.tabs').tabs();
         });
     </script>
 
