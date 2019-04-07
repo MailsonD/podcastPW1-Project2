@@ -69,9 +69,9 @@
                         </img>
 
 
-                        <h4>Teste </h4>
+                        <h4><h:outputText value="#{loginBean.user.nome}"/> </h4>
 
-                        <p>ALUNO / USER</p>
+                        <p><h:outputText value="#{loginBean.user.nivelAcesso}"/> / <h:outputText value="#{loginBean.user.tipo}"/></p>
                     </center>
 
 
@@ -86,10 +86,10 @@
                     <div class="card-content grey lighten-4">
                         <div id="dados">
                             <h4>Detalhes da conta:</h4>
-                            <p><b>Nome completo:</b> teste</p>
-                            <p><b>Telefone:</b> 111111111 </p>
-                            <p><b>E-mail: </b>teste@testerson </p>
-                            <p><b>Nascimento:</b> 11/11/1111 </p>
+                            <p><b>Nome completo: </b> <h:outputText value="#{loginBean.user.nome}"/> </p>
+                            <p><b>Telefone:</b> <h:outputText value="#{loginBean.user.telefone}"/> </p>
+                            <p><b>E-mail: </b><h:outputText value="#{loginBean.user.email}"/> </p>
+                            <p><b>Nascimento:</b><h:outputText value="#{loginBean.user.nascimento}"/> </p>
                         </div>
                         <div id="settings"><h4>Configuração da conta:</h4>
                             <h:form>
@@ -97,7 +97,7 @@
                             </h:form><br/>
                             <a href="#md1" class="modal-trigger btn">Excluir conta</a><br/>
                             <h:panelGrid columns="1" cellpadding="5">
-                                <p:commandButton value="Gêrencia de Usuário" type="button" onclick="PF('dlg2').show();" />
+                                <p:commandButton  rendered="#{loginBean.user.nivelAcesso=='ADMIN'}" value="Gêrencia de Usuário" type="button" onclick="PF('dlg2').show();" />
                             </h:panelGrid>
                     </div>
                 </div>
