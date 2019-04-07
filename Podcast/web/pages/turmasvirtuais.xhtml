@@ -15,7 +15,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Loja PWEB - Login</title>
+    <title>IFCast - Turmas virtuais</title>
 
     <!-- Compiled and minified CSS -->
     <!-- Compiled and minified CSS -->
@@ -63,6 +63,23 @@
                 </nav>
             </header>
 
+
+
+<div class="card">
+    <div class="card-title">Turmas Virtuais</div>
+    <div class="card-content"><p>As Turmas Virtuais permitem que qualquer professor possa criar suas turmas utilizando a nossa plataforma.
+        Aqui, você professor, poderá gerênciar sua turma e alunos participantes, assim como disponibilizar podcasts para os mesmos.</p></div>
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#test1">Suas turmas</a></li>
+            <li class="tab col s3"><a  href="#test2">Criar turma</a></li>
+        </ul>
+    </div>
+
+    <div id="test2" class="col s12">Test 2</div>
+
+</div>
+            <div id="test1" class="col s12">
             <h:form>
                 <p:dataScroller value="#{turmaVirtualBean.turmas}" var="car" chunkSize="10">
                     <f:facet name="header">
@@ -87,6 +104,7 @@
                     </h:panelGrid>
                 </p:dataScroller>
             </h:form>
+               </div>
 
             <footer class="page-footer">
                 <div class="container">
@@ -117,5 +135,11 @@
 
         <h:outputScript name="js/materialize.js"></h:outputScript>
         <h:outputScript name="js/materialize.min.js"></h:outputScript>
+        <script type="text/javascript">
+
+            $(document).ready(function(){
+                $('.tabs').tabs();
+            });
+        </script>
     </h:body>
 </html>
