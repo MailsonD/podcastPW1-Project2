@@ -9,6 +9,7 @@ import com.ifpb.model.domain.Usuario;
 import com.ifpb.model.jdbc.ConnectionFactory;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -158,16 +159,19 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
 
     @Override
-    public boolean autenticarUsuario(String email, String senha) throws DataAccessException {
+    public Usuario autenticarUsuario(String email, String senha) throws DataAccessException {
         String query = "SELECT senha FROM usuario WHERE email = ?";
         try (Connection connection = ConnectionFactory.getInstance().getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getString("senha").equals(senha);
+                if(resultSet.getString("senha").equals(senha)){
+                    Usuario user;
+                    return user = new Usuario(resultSet.getString("nome"), resultSet.getString("email"), null, (LocalDate.parse((CharSequence) resultSet.getDate("nascimento"))), (com.ifpb.model.domain.Enum.Tipo)resultSet.getObject("tipo"), (com.ifpb.model.domain.Enum.NivelAcesso)resultSet.getObject("nivelAcesso"), resultSet.getString("fotoPath"), (com.ifpb.model.domain.Enum.Sexo)resultSet.getObject("sexo"), resultSet.getString("telefone"));
+                }
             }
-            return false;
+            return null;
         } catch (SQLException e) {
             throw new DataAccessException("Falha ao tentar autenticar um usuário");
         }
