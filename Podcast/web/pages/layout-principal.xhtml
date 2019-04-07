@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+</h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>IFCast</title>
+
+
+    <style type="text/css">
+        #overflowTest {
+
+           padding: 15px;
+            width: 100%;
+            height: 150px;
+            overflow: scroll;
+
+      }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+    <!-- Compiled and minified CSS -->
+    <h:outputStylesheet name="css/materialize.css"></h:outputStylesheet>
+    <h:outputStylesheet name="css/materialize.min.css"></h:outputStylesheet>
+
+
+<h:body>
+    <f:view>
+        <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IFCast</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="usuario.xhtml">Usuário</a></li>
+
+                    <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
+                    <li><a href="uploadPodcast.xhtml">Upload</a></li>
+
+                    <li>
+                        <h:form>
+                            <h:commandLink action="#{loginBean.logout}"><i class="material-icons">settings_power</i></h:commandLink>
+                        </h:form>
+                    </li>
+                </ul>
+
+
+                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+
+
+        <ui:insert name="conteudo">
+
+        </ui:insert>
+
+
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">IFCast</h5>
+                        <p class="grey-text text-lighten-4">Projeto da disciplina de Programação Web 1 do professor Diego - IFPB</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">GitHub</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/antonioads2017">Antônio Filho</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/camilacarwalho">Camila Carvalho</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/eduulucas">Eduardo Lucas</a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.github.com/mailsond">Mailson Dennis</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2019 Copyright IFCast
+                </div>
+            </div>
+        </footer>
+
+
+    </f:view>
+
+    <h:outputScript name="js/materialize.js"></h:outputScript>
+    <h:outputScript name="js/materialize.min.js"></h:outputScript>
+</h:body>
+
+</html>
