@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @ManagedBean
@@ -53,8 +54,8 @@ public class LoginBean {
     }
 
     public String logout(){
-        this.user = null;
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        request.getSession(false).invalidate();
         return "login";
     }
 
