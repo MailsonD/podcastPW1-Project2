@@ -22,4 +22,9 @@
         </navigation-case>
     </navigation-rule>
 
+    <!--<converter>-->
+        <!--<converter-for-class>java.lang.Enum</converter-for-class>-->
+        <!--<converter-class>javax.faces.convert.EnumConverter</converter-class>-->
+    <!--</converter>-->
+
 </faces-config>

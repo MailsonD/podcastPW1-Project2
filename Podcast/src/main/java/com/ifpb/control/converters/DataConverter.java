@@ -33,7 +33,7 @@ public class DataConverter implements Converter {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             data = LocalDate.from(localDate).format(formatter);
         }
-        
+
         return data;
     }
 

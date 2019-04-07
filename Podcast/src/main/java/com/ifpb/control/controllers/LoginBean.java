@@ -37,14 +37,18 @@ public class LoginBean {
         instance = this;
     }
 
-    public String efetuarLogin() throws DataAccessException {
-        user = usuarioDao.autenticarUsuario(email,senha);
-        if(user == null){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos", "Login ou senha inválidos"));
-            return "";
+    public String efetuarLogin(){
+        try {
+            user = usuarioDao.autenticarUsuario(email, senha);
+            if (user == null) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos", "Login ou senha inválidos"));
+                return "";
+            }
         }
-        return "home";
-
+        catch(DataAccessException e){
+                e.printStackTrace();
+        }
+        return "";
     }
 
     public void logout()

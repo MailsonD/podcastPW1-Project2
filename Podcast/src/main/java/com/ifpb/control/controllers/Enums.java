@@ -1,4 +1,4 @@
-package com.ifpb.control.util;
+package com.ifpb.control.controllers;
 
 import com.ifpb.model.domain.Enum.Sexo;
 import com.ifpb.model.domain.Enum.Tipo;
