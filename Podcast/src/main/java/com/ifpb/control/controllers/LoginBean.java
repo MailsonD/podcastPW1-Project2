@@ -31,7 +31,7 @@ public class LoginBean {
 
     @PostConstruct
     public void init() {
-        user = new Usuario();
+        user = null;
         usuarioDao = new UsuarioDaoImpl();
     }
 

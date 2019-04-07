@@ -1,4 +1,4 @@
-package com.ifpb.listener;
+package com.ifpb.control.listener;
 
 import com.ifpb.control.controllers.LoginBean;
 
@@ -20,7 +20,7 @@ public class AuthListener implements PhaseListener {
             event.getFacesContext().getApplication().getNavigationHandler().handleNavigation(context,null,"login");
         }
         LoginBean loginBean = (LoginBean)request.getSession(false).getAttribute("loginBean");
-        if(!view.equals("index.xhtml")){
+        if(!view.equals("/index.xhtml")){
             if(loginBean ==null || loginBean.getUser()==null){
                 event.getFacesContext().getApplication().getNavigationHandler().handleNavigation(context,null,"login");
             }
@@ -41,6 +41,6 @@ public class AuthListener implements PhaseListener {
 
     @Override
     public PhaseId getPhaseId() {
-        return null;
+        return PhaseId.RESTORE_VIEW;
     }
 }
