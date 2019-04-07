@@ -7,8 +7,8 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>home</from-outcome>
-            <to-view-id>/pages/home.xhtml</to-view-id>
+            <from-outcome>timeline</from-outcome>
+            <to-view-id>/pages/timeline.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -18,6 +18,15 @@
         <navigation-case>
             <from-outcome>turmasvirtuais</from-outcome>
             <to-view-id>/pages/turmasvirtuais.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

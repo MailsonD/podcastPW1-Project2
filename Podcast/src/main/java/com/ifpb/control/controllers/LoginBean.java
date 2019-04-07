@@ -28,42 +28,34 @@ public class LoginBean {
 
     private String senha;
 
-    private static LoginBean instance;
-
     @PostConstruct
     public void init() {
         user = new Usuario();
         usuarioDao = new UsuarioDaoImpl();
-        instance = this;
     }
 
     public String efetuarLogin(){
         try {
-            user = usuarioDao.autenticarUsuario(email, senha);
-            if (user == null) {
+            if(!usuarioDao.autenticarUsuario(email, senha)){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos", "Login ou senha inválidos"));
                 return "";
+            }else{
+               user = usuarioDao.buscar(email);
+               user.setSenha(null);
+               senha=null;
+               return "timeline";
             }
         }
         catch(DataAccessException e){
-                e.printStackTrace();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro interno!", "Erro interno!"));;
+            return "";
         }
-        return "";
     }
 
-    public void logout()
-    {
+    public String logout(){
         this.user = null;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-    }
-
-    public static LoginBean getInstance() throws Exception
-    {
-        if(instance == null)
-        {
-            throw new Exception("Não há usuario logado no sistema");
-        }
-        return instance;
+        return "login";
     }
 
     public String getEmail() {
