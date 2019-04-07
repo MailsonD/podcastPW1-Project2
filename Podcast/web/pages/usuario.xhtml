@@ -95,26 +95,27 @@
                             <h:form>
                                 <h:commandLink styleClass="btn">Editar Conta</h:commandLink>
                             </h:form><br/>
-                            <a href="#md1" class="modal-trigger btn">Excluir conta</a><br/>
+                            <a href="#modalExcluir" class="modal-trigger btn">Excluir conta</a><br/>
+                            <div id="modalExcluir" class="modal">
+                                <div class="modal-content">
+                                    <h4>Por favor, confirme</h4>
+                                    <p>Todos os seus dados, podcasts ou turmas virtuais cadastrados no sistema também serão excluídos!
+                                    </p>
+                                    <p>Deseja continuar com esta ação?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close btn">Não</a>
+                                    <a href="#"
+                                       class="waves-effect waves-green red btn-flat center-align" id="md1_YesBtn">Sim</a>
+                                </div>
+                            </div>
                             <h:panelGrid columns="1" cellpadding="5">
                                 <p:commandButton value="Gêrencia de Usuário" type="button" onclick="PF('dlg2').show();" />
                             </h:panelGrid>
                     </div>
                 </div>
 
-                <div id="md1" class="modal">
-                    <div class="modal-content">
-                        <h4>Por favor, confirme</h4>
-                        <p>Todos os seus dados, podcasts ou turmas virtuais cadastrados no sistema também serão excluídos!
-                        </p>
-                        <p>Deseja continuar com esta ação?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close btn">Não</a>
-                        <a href="#"
-                           class="waves-effect waves-green red btn-flat center-align" id="md1_YesBtn">Sim</a>
-                    </div>
-                </div>
+
 
             </div>
         </div>

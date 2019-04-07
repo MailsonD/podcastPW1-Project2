@@ -3,14 +3,12 @@ import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.UsuarioDaoImpl;
 import com.ifpb.model.dao.interfaces.UsuarioDao;
 import com.ifpb.model.domain.Enum.NivelAcesso;
-import com.ifpb.model.domain.Enum.Sexo;
-import com.ifpb.model.domain.Enum.Tipo;
+
 import com.ifpb.model.domain.Usuario;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import java.time.LocalDate;
 import java.util.List;
 
 @ManagedBean
