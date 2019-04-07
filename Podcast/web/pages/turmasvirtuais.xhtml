@@ -96,13 +96,14 @@
 
             </li></ul></div>
         <div class="col s6"> <ul><li><p>Todos os alunos:</p>
-            <ul class="collection">
-                <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
-                    <span class="title">Nome</span>
-                    <p>E-mail
-                    </p>
-                <a class="btn small blue">Adicionar</a></li>
 
+            <ul class="collection">
+                <ui:repeat  value="#{usuarioBean.alunos}" var="aluno">
+                <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
+                    <span class="title">#{aluno.nome} </span>
+                    <p>#{aluno.email} </p>
+                <a class="btn small blue">Adicionar</a></li>
+                </ui:repeat>
             </ul>
         </li>
         </ul></div>
