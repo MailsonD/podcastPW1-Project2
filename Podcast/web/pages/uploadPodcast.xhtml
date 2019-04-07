@@ -31,13 +31,21 @@
 <h:body >
     <f:view>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo">IFCast</a>
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IFCast</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="usuario.xhtml">Usuário</a></li>
+
                     <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
                     <li><a href="uploadPodcast.xhtml">Upload</a></li>
-                    <li><a><i class="material-icons">settings_power</i></a></li>
+
+                    <li>
+                        <h:form>
+                            <h:commandLink action="#{loginBean.logout}"><i class="material-icons">settings_power</i></h:commandLink>
+                        </h:form>
+                    </li>
                 </ul>
+
+
                 <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             </div>
         </nav>
