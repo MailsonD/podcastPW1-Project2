@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.logging.Logger;
 
-@WebServlet("/audio")
+@WebServlet("/imagem")
 public class ImagemServlet extends HttpServlet {
 
     private Logger log = Logger.getLogger(ImagemServlet.class.getName());
