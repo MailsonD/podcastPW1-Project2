@@ -21,11 +21,15 @@ public class UsuarioBean {
 
     private List<Usuario> usuarios;
 
+    private List<Usuario> alunos;
+
+
     @PostConstruct
     public void init() {
         usuarioDao = new UsuarioDaoImpl();
         usuario = new Usuario();
         listar();
+        listarAlunos();
     }
 
     public String cadastrar(){
@@ -42,6 +46,13 @@ public class UsuarioBean {
     public void listar(){
         try {
             this.usuarios = usuarioDao.listar();
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+    public void listarAlunos(){
+        try {
+            this.alunos = usuarioDao.listarAlunos();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -79,5 +90,14 @@ public class UsuarioBean {
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+
+    public List<Usuario> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Usuario> alunos) {
+        this.alunos = alunos;
+    }
+
 
 }
