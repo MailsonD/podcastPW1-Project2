@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthListener implements PhaseListener {
     @Override
     public void afterPhase(PhaseEvent event) {
+
         String view = event.getFacesContext().getViewRoot().getViewId();
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+
         if(request.getSession()==null){
             event.getFacesContext().getApplication().getNavigationHandler().handleNavigation(context,null,"login");
         }
