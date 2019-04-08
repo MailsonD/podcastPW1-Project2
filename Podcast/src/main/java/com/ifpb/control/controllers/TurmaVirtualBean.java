@@ -6,6 +6,7 @@ import com.ifpb.model.dao.impl.TurmaVirtualDaoImpl;
 import com.ifpb.model.dao.impl.UsuarioDaoImpl;
 import com.ifpb.model.dao.interfaces.TurmaVirtualDao;
 import com.ifpb.model.dao.interfaces.UsuarioDao;
+import com.ifpb.model.domain.Enum.Tipo;
 import com.ifpb.model.domain.Podcast;
 import com.ifpb.model.domain.TurmaVirtual;
 import com.ifpb.model.domain.Usuario;
@@ -33,21 +34,28 @@ public class TurmaVirtualBean {
     @ManagedProperty("#{usuarioBean}")
     private UsuarioBean usuarioBean;
 
+    @ManagedProperty("#{loginBean}")
+    private LoginBean loginBean;
 
 
     @PostConstruct
-    public void init(){
+    public void init() {
         turmaVirtualDao = new TurmaVirtualDaoImpl();
-        turmas = new ArrayList<TurmaVirtual>();
-        turmaVirtual = new TurmaVirtual();
-        usuarioDao = new UsuarioDaoImpl();
-
-        List<String> alunosTarget = new ArrayList<>();
-        List<String> alunosSource = new ArrayList<>();
-
         try {
+            if (loginBean.getUser().getTipo().equals(Tipo.PROFESSOR)) {
+                turmas = turmaVirtualDao.listarTurmasCriadas(loginBean.getUser().getEmail());
+
+            } else {
+                turmas = turmaVirtualDao.listarTurmasParticiantes(loginBean.getUser().getEmail());
+            }
+
+            turmaVirtual = new TurmaVirtual();
+            usuarioDao = new UsuarioDaoImpl();
+
+            List<String> alunosTarget = new ArrayList<>();
+            List<String> alunosSource = new ArrayList<>();
             List<Usuario> alunos = usuarioDao.listarAlunos();
-            for (Usuario aluno:alunos) {
+            for (Usuario aluno : alunos) {
                 alunosSource.add(aluno.getEmail());
             }
             emailAlunos = new DualListModel<>(alunosSource, alunosTarget);
@@ -56,12 +64,13 @@ public class TurmaVirtualBean {
         }
     }
 
-    public String salvar(){
+
+    public String salvar() {
 
         try {
             this.turmaVirtual.setCriador(usuarioBean.getLoginBean().getUser());
             List<Usuario> alunos = new ArrayList<>();
-            for (String email:emailAlunos.getTarget()) {
+            for (String email : emailAlunos.getTarget()) {
                 alunos.add(usuarioDao.buscar(email));
             }
             this.turmaVirtual.setParticipantes(alunos);
@@ -73,7 +82,7 @@ public class TurmaVirtualBean {
         return "";
     }
 
-    public String remover(){
+    public String remover() {
         try {
             turmaVirtualDao.remover(turmaVirtual.getNome());
         } catch (DataAccessException e) {
@@ -84,34 +93,33 @@ public class TurmaVirtualBean {
 
 
     public String buscarTurma() throws DataAccessException {
-        try{
+        try {
             turmaVirtualDao.buscar(turmaVirtual.getNome());
-        }
-        catch (DataAccessException e){
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    public String adicionarAlunoTurma(){
-        try {
-            turmaVirtualDao.adicionarAlunoaTurma(turmaVirtual.getNome(),usuarioBean.getUsuario().getEmail());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return "";
     }
 
-    public String removerAlunoDeTurma(){
+    public String adicionarAlunoTurma() {
         try {
-            turmaVirtualDao.removerAlunodeTurma(turmaVirtual.getNome(),usuarioBean.getUsuario().getEmail());
+            turmaVirtualDao.adicionarAlunoaTurma(turmaVirtual.getNome(), usuarioBean.getUsuario().getEmail());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return "";
     }
 
-    public void listarTurmasCriadas(){
+    public String removerAlunoDeTurma() {
+        try {
+            turmaVirtualDao.removerAlunodeTurma(turmaVirtual.getNome(), usuarioBean.getUsuario().getEmail());
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public void listarTurmasCriadas() {
         try {
             turmas = turmaVirtualDao.listarTurmasCriadas(usuarioBean.getLoginBean().getUser().getEmail());
         } catch (DataAccessException e) {
@@ -119,7 +127,7 @@ public class TurmaVirtualBean {
         }
     }
 
-    public String listarTurmasParticipantes(){
+    public String listarTurmasParticipantes() {
         try {
             turmaVirtualDao.listarTurmasParticiantes(usuarioBean.getUsuario().getEmail());
         } catch (DataAccessException e) {
@@ -128,12 +136,20 @@ public class TurmaVirtualBean {
         return "";
     }
 
-    public DualListModel<String> getAlunos() {
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
+
+    public DualListModel<String> getEmailAlunos() {
         return emailAlunos;
     }
 
-    public void setAlunos(DualListModel<String> alunos) {
-        this.emailAlunos = alunos;
+    public void setEmailAlunos(DualListModel<String> emailAlunos) {
+        this.emailAlunos = emailAlunos;
     }
 
     public TurmaVirtual getTurmaVirtual() {
