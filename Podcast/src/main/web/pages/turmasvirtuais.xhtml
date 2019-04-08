@@ -50,9 +50,9 @@
                             </ul>
                         </div>
 
-                        <div id="test2" class="col s12">
-                            <p>Título da turma:</p> <h:inputText/>
-                            <p>Descrição:</p> <h:inputText/>
+                        <h:form><div id="test2" class="col s12">
+                            <p>Título da turma:</p> <h:inputText value="#{turmaVirtualBean.turmaVirtual.nome}"/>
+                            <p>Descrição:</p> <h:inputText value="#{turmaVirtualBean.turmaVirtual.descricao}"/>
                             <div class="col s6"><ul>
                                 <li>
                                     <p>Alunos adicionados:</p>
@@ -79,11 +79,14 @@
                             </li>
                             </ul></div>
                             <center>
-                                <a class="btn large orange center-align">Criar</a>
+                                <p:commandButton styleClass="btn" ajax="false"
+                                                 action="#{turmaVirtualBean.salvar}" value="Criar">
+                                    <f:attribute name="tipoForm" value="editar">Criar</f:attribute>
+                                </p:commandButton>
                             </center>
 
 
-                        </div>
+                        </div></h:form>
 
                     </div>
                     <div id="test1" class="col s12">
