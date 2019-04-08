@@ -7,6 +7,7 @@ import com.ifpb.model.dao.impl.UsuarioDaoImpl;
 import com.ifpb.model.dao.interfaces.ComentarioDao;
 import com.ifpb.model.dao.interfaces.UsuarioDao;
 import com.ifpb.model.domain.Comentario;
+import com.ifpb.model.domain.Podcast;
 import com.ifpb.model.domain.Usuario;
 
 import javax.annotation.PostConstruct;
@@ -17,48 +18,39 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ComentarioBean {
 
-//    ComentarioDao comentarios;
-//
-//    @PostConstruct
-//    public void init(){
-//        comentarios = new ComentarioDaoImpl();
-//    }
-//
-//    public String salvar(Comentario comentario, String podcast){
-//        try{
-//            comentarios.salvar(comentario, podcast);
-//        }
-//        catch (DataAccessException e){
-//            e.printStackTrace();
-//        }
-//        return "";
-//    }
-//
-//    public String deletar (String usuario, String podcast) {
-//        try {
-//            comentarios.deletar(usuario, podcast);
-//        } catch (DataAccessException e) {
-//            e.printStackTrace();
-//        }
-//        return "";
-//    }
-//
-//    public String deletarPorPodcast(String podcast){
-//        try {
-//            comentarios.deletarPorPodcast(podcast);
-//        } catch (DataAccessException e) {
-//            e.printStackTrace();
-//        }
-//        return "";
-//    }
-//
-//    public String buscarPorPodcast(String podcast){
-//        try {
-//            comentarios.buscarPorPodcast(podcast);
-//        } catch (DataAccessException e) {
-//            e.printStackTrace();
-//        }
-//        return "";
-//    }
+    private ComentarioDao comentarioDao;
 
+    private Comentario comentario;
+
+    private int idPodcast;
+
+    @PostConstruct
+    public void init(){
+        comentario = new Comentario();
+        comentarioDao = new ComentarioDaoImpl();
+    }
+
+    public void comentar(){
+        try {
+            comentarioDao.salvar(comentario,idPodcast);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Comentario getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(Comentario comentario) {
+        this.comentario = comentario;
+    }
+
+    public int getIdPodcast() {
+        return idPodcast;
+    }
+
+    public void setIdPodcast(int idPodcast) {
+        this.idPodcast = idPodcast;
+    }
 }

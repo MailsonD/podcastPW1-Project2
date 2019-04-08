@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="layout-principal.xhtml">
     <ui:define name="conteudo">
@@ -65,7 +66,7 @@
                             <div class="col s12 card-title">Comentários:</div> <br/>
                             <div class="card-content">
                                 <ul class="collapsible">
-                                    <ui:repeat value="#{playerBean.podcast.comentarios}" var="comnetario">
+                                    <ui:repeat id="comentarios" value="#{playerBean.podcast.comentarios}" var="comnetario" >
                                         <li>
                                             <div class="collapsible-header">
                                                 <h:graphicImage rendered="#{comnetario.usuario.fotoPath!=NULL}"
@@ -100,21 +101,22 @@
 
                                     </h:graphicImage>
                                 </div>
-                                <h:form>
+                                <h:form prependId="false">
                                     <div class="col s12 m4 l8">
 
                                         <div class="input-field col5 s5">
-                                            <input id="comentario" />
+                                            <h:inputText id="comentario"  value="#{comentarioBean.comentario.texto}" ></h:inputText>
+
                                             <label for="comentario">Escreva um comentário...</label>
 
                                         </div>
 
-                                        <h:inputHidden value=""></h:inputHidden>
                                     </div>
                                     <div class="col s12 m4 l2">
-                                        <button class="btn-floating waves-effect waves-light" ><i
-                                                class="material-icons right">chat</i>
-                                        </button>
+                                        <p:commandButton styleClass="btn" value="Enviar" action="#{comentarioBean.comentar}" update="comentarios">
+                                            <f:setPropertyActionListener value="#{loginBean.user}" target="#{comentarioBean.comentario.usuario}" />
+                                            <f:setPropertyActionListener value="#{playerBean.podcast.id}" target="#{comentarioBean.idPodcast}" />
+                                        </p:commandButton>
                                     </div>
                                 </h:form>
                             </div>
