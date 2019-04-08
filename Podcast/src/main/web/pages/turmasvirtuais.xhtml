@@ -91,7 +91,7 @@
                     </div>
                     <div id="test1" class="col s12">
                         <h:form>
-                            <p:dataScroller value="#{turmaVirtualBean.turmas}" var="car" chunkSize="10">
+                            <p:dataScroller value="#{turmaVirtualBean.turmas}" var="t" chunkSize="10">
                                 <f:facet name="header">
                                     Desça para que apareça mais turmas:
                                 </f:facet>
@@ -102,13 +102,13 @@
                                     <p:outputPanel>
                                         <h:panelGrid columns="2" cellpadding="5">
                                             <h:outputText value="Título:" />
-                                            <h:outputText value="#{turmaVirtualBean.turmaVirtual.nome}" style="font-weight: bold"/>
+                                            <h:outputText value="#{t.nome}" style="font-weight: bold"/>
 
                                             <h:outputText value="Descrição:" />
-                                            <h:outputText value="#{turmaVirtualBean.turmaVirtual.descricao}" style="font-weight: bold"/>
+                                            <h:outputText value="#{t.descricao}" style="font-weight: bold"/>
 
                                             <h:outputText value="Criador:" />
-                                            <h:outputText value="#{turmaVirtualBean.turmaVirtual.criador.nome}" style="font-weight: bold"/>
+                                            <h:outputText value="#{t.criador.nome}" style="font-weight: bold"/>
                                         </h:panelGrid>
                                     </p:outputPanel>
                                 </h:panelGrid>

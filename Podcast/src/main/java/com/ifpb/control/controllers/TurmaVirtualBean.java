@@ -60,14 +60,6 @@ public class TurmaVirtualBean {
         return "turmasvirtuais";
     }
 
-    public void listar (){
-        try {
-            turmas = turmaVirtualDao.listar();
-        } catch (DataAccessException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public String buscarTurma() throws DataAccessException {
         try{
@@ -97,13 +89,12 @@ public class TurmaVirtualBean {
         return "turmasvirtuais";
     }
 
-    public String listarTurmasCriadas(){
+    public void listarTurmasCriadas(){
         try {
-            turmaVirtualDao.listarTurmasCriadas(usuarioBean.getLoginBean().getUser().getEmail());
+            turmas = turmaVirtualDao.listarTurmasCriadas(usuarioBean.getLoginBean().getUser().getEmail());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return "turmasvirtuais";
     }
 
     public String listarTurmasParticipantes(){
