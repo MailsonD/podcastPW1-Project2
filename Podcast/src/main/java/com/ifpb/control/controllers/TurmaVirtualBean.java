@@ -48,7 +48,7 @@ public class TurmaVirtualBean {
             e.printStackTrace();
         }
 
-        return "turmasvirtuais";
+        return "";
     }
 
     public String remover(){
@@ -57,7 +57,7 @@ public class TurmaVirtualBean {
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return "turmasvirtuais";
+        return "";
     }
 
 
@@ -68,7 +68,7 @@ public class TurmaVirtualBean {
         catch (DataAccessException e){
             e.printStackTrace();
         }
-        return "turmasvirtuais";
+        return "";
     }
 
     public String adicionarAlunoTurma(){
@@ -77,7 +77,7 @@ public class TurmaVirtualBean {
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return "turmasvirtuais";
+        return "";
     }
 
     public String removerAlunoDeTurma(){
@@ -86,7 +86,7 @@ public class TurmaVirtualBean {
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return "turmasvirtuais";
+        return "";
     }
 
     public void listarTurmasCriadas(){
@@ -103,7 +103,7 @@ public class TurmaVirtualBean {
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
-        return "turmasvirtuais";
+        return "";
     }
 
     public TurmaVirtual getTurmaVirtual() {
