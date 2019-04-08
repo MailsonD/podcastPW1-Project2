@@ -2,7 +2,9 @@ package com.ifpb.control.controllers;
 
 import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.ComentarioDaoImpl;
+import com.ifpb.model.dao.impl.PodcastDaoImpl;
 import com.ifpb.model.dao.interfaces.ComentarioDao;
+import com.ifpb.model.dao.interfaces.PodcastDao;
 import com.ifpb.model.domain.Podcast;
 
 import javax.annotation.PostConstruct;
@@ -15,16 +17,16 @@ public class PlayerBean {
 
     private Podcast podcast;
 
-    private ComentarioDao comentarioDao;
+    private PodcastDao podcastDao;
 
     @PostConstruct
     public void init(){
-        comentarioDao = new ComentarioDaoImpl();
+        podcastDao = new PodcastDaoImpl();
     }
 
     public void atualizar_comentários(){
         try {
-            podcast.setComentarios(comentarioDao.buscarPorPodcast(podcast.getId()));
+            podcast  = podcastDao.buscar(podcast.getId());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

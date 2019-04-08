@@ -66,24 +66,26 @@
                             <div class="col s12 card-title">Comentários:</div> <br/>
                             <div class="card-content">
                                 <ul class="collapsible">
-                                    <ui:repeat id="comentarios" value="#{playerBean.podcast.comentarios}" var="comnetario" >
-                                        <li>
-                                            <div class="collapsible-header">
-                                                <h:graphicImage rendered="#{comnetario.usuario.fotoPath!=NULL}"
-                                                                styleClass="icone responsive-img" style="width: 50px; height: 50px;border-radius: 50%;"
-                                                                url="/imagem?emailUsuario=#{comnetario.usuario.email}">
+                                    <p:outputPanel id="comentarios" >
+                                        <ui:repeat value="#{playerBean.podcast.comentarios}" var="comentario" >
+                                            <li class="active">
+                                                <div class="collapsible-header">
+                                                    <h:graphicImage rendered="#{comentario.usuario.fotoPath!=NULL}"
+                                                                    styleClass="icone responsive-img" style="width: 50px; height: 50px;border-radius: 50%;"
+                                                                    url="/imagem?emailUsuario=#{comentario.usuario.email}">
 
-                                                </h:graphicImage>
-                                                <h:graphicImage rendered="#{comnetario.usuario.fotoPath==NULL}"
-                                                                styleClass="icone" style="width: 50px; height: 50px; border-radius: 50%;"
-                                                                url="http://www.wfmu.org/images/generic_avatar_300.png">
+                                                    </h:graphicImage>
+                                                    <h:graphicImage rendered="#{comentario.usuario.fotoPath==NULL}"
+                                                                    styleClass="icone" style="width: 50px; height: 50px; border-radius: 50%;"
+                                                                    url="http://www.wfmu.org/images/generic_avatar_300.png">
 
-                                                </h:graphicImage>
-                                                <p><h:outputText value="#{comentario.texto}"></h:outputText></p>
-                                                <span class="badge" ><b><h:outputText value="#{comentario.usuario.nome}"></h:outputText></b></span>
-                                            </div>
-                                        </li>
-                                    </ui:repeat>
+                                                    </h:graphicImage>
+                                                    <p><h:outputText value="#{comentario.texto}"></h:outputText></p>
+                                                    <span class="badge" ><b><h:outputText value="#{comentario.usuario.nome}"></h:outputText></b></span>
+                                                </div>
+                                            </li>
+                                        </ui:repeat>
+                                    </p:outputPanel>
                                 </ul>
                             </div>
 
@@ -113,7 +115,7 @@
 
                                     </div>
                                     <div class="col s12 m4 l2">
-                                        <p:commandButton styleClass="btn" value="Enviar" action="#{comentarioBean.comentar}" update="comentarios">
+                                        <p:commandButton styleClass="btn" value="Enviar" action="#{comentarioBean.comentar}" update="comentarios" ajax="true">
                                             <f:setPropertyActionListener value="#{loginBean.user}" target="#{comentarioBean.comentario.usuario}" />
                                             <f:setPropertyActionListener value="#{playerBean.podcast.id}" target="#{comentarioBean.idPodcast}" />
                                         </p:commandButton>
