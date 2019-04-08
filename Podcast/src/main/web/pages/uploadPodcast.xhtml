@@ -14,21 +14,23 @@
                 <div class="col s4"></div>
                 <div class="col s4">
                     <h:form id="formUpload" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <h:outputLabel value="Título"></h:outputLabel>
-                            <p:inputText id="titulo" required="true"  value="#{podcastBean.podcast.titulo}"
-                                         requiredMessage="Título obrigatório"
-                                         styleClass="form-control form-control-user">
-                            </p:inputText>
-                            <p:message for="titulo" />
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel value="Categoria"></h:outputLabel>
-                            <p:inputText id="categoria" required="true" value="#{podcastBean.podcast.categoria}"
-                                         requiredMessage="Categoria obrigatória"
-                                         styleClass="form-control form-control-user" >
-                            </p:inputText>
-                            <p:message for="categoria" />
+                        <div class="row">
+                            <div class="form-group col s6">
+                                <h:outputLabel value="Título"></h:outputLabel>
+                                <p:inputText id="titulo" required="true"  value="#{podcastBean.podcast.titulo}"
+                                             requiredMessage="Título obrigatório"
+                                             styleClass="form-control form-control-user">
+                                </p:inputText>
+                                <p:message for="titulo" />
+                            </div>
+                            <div class="form-group col s6">
+                                <h:outputLabel value="Categoria"></h:outputLabel>
+                                <p:inputText id="categoria" required="true" value="#{podcastBean.podcast.categoria}"
+                                             requiredMessage="Categoria obrigatória"
+                                             styleClass="form-control form-control-user" >
+                                </p:inputText>
+                                <p:message for="categoria" />
+                            </div>
                         </div>
                         <div class="form-group">
                             <h:outputLabel value="Descrição"></h:outputLabel>
