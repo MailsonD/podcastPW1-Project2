@@ -91,7 +91,6 @@ public class PodcastBean {
         }
     }
 
-
     public Podcast getPodcast() {
         return podcast;
     }

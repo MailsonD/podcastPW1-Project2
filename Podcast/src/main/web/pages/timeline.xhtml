@@ -13,44 +13,72 @@
 
             <div class="col s12 m7">
 
-                <div class="card">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src="../assets/img/m.png" style="width: 200px;"/>
-
-                        </div>
-
-                        <div class="card-content">
-
-                            <h5>Título</h5>
-                            <p>Descrição</p>
-                            <p>Postado por:</p>
-                            <a class="btn red float white-text"><i class="material-icons white-text">play_arrow</i></a><br/>
-                        </div>
-                    </div>
-                    <h6>Comentários:</h6>
-                    <div id="overflowTest">
-
-                        <ul class="collection">
-                            <li class="collection-item">Comentário 1
-                                <br/><p>Autor</p></li>
-                            <li class="collection-item">Comentário 2
-                                <br/><p>Autor</p></li>
-                        </ul>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">textsms</i>
-                                <input type="text" id="autocomplete-input" class="autocomplete"/>
-                                <label for="autocomplete-input">Escreva um comentário...</label>
+                <ui:repeat value="#{timelineBean.timeline}" var="podcast">
+                    <div class="col s6 m3">
+                        <div class="card" style="width: 300px">
+                            <div class="card-image">
+                                <img src="../assets/img/m.png" class="capa" style="height: 250px"/>
+                                <span class="card-title"><h:outputText value="#{podcast.titulo}"></h:outputText></span>
+                                <h:form>
+                                    <h:commandLink styleClass="btn-floating halfway-fab waves-effect waves-light red" action="#{timelineBean.tocar}">
+                                        <i class="material-icons">play_arrow</i>
+                                        <f:setPropertyActionListener value="#{podcast}"
+                                                                     target="#{timelineBean.podcast}" />
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                            <div class="card-content">
+                                <p class="autor"><b> Postado por <h:outputText value="#{podcast.dono.nome}"></h:outputText>
+                                </b></p><br/>
+                                <p class="descricao"><h:outputText value="#{podcast.descricao}"></h:outputText></p>
                             </div>
                         </div>
-
                     </div>
-
-
-                </div>
-
+                </ui:repeat>
             </div>
+            <!--<div class="container">-->
+                <!--<div class="player">-->
+                    <!--<div class="like waves-effect waves-light">-->
+                        <!--<i class="icon-heart"></i>-->
+                    <!--</div>-->
+                    <!--<div class="mask"></div>-->
+                    <!--<ul class="player-info info-one">-->
+                        <!--<li>Rock'n'Roll Nerd</li>-->
+                        <!--<li>Tim Minchin</li>-->
+                        <!--<li>5:34</li>-->
+                    <!--</ul>-->
+                    <!--<ul class="player-info info-two">-->
+                        <!--<li>Rock'n'Roll Nerd</li>-->
+                        <!--<li>Tim Minchin</li>-->
+                        <!--<li><span id="duration"></span><i> / </i>5:34</li>-->
+                    <!--</ul>-->
+                    <!--<div id="play-button" class="unchecked">-->
+                        <!--<i class="icon icon-play"></i>-->
+                    <!--</div>-->
+                    <!--<div class="control-row">-->
+                        <!--<div class="waves-animation-one"></div>-->
+                        <!--<div class="waves-animation-two"></div>-->
+                        <!--<div id="pause-button">-->
+                            <!--<i class="icon"></i>-->
+                        <!--</div>-->
+                        <!--<div class="seek-field">-->
+                            <!--<input id="audioSeekBar" min="0" max="334" step="1" value="0" type="range" oninput="audioSeekBar()" onchange="this.oninput()"/>-->
+                        <!--</div>-->
+                        <!--<div class="volume-icon">-->
+                            <!--<i class="icon-volume-up"></i>-->
+                        <!--</div>-->
+                        <!--<div class="volume-field">-->
+                            <!--<input type="range" min="0" max="100" value="100" step="1" oninput="audio.volume = this.value/100" onchange="this.oninput()"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<audio id="audio-player" ontimeupdate="SeekBar()" ondurationchange="CreateSeekBar()" preload="auto" loop="true">-->
+                <!--<source src="https://michael-zhigulin.github.io/mz-codepen-projects/Material%20Design%20UI%20Audio%20Player/audio/Tim%20Minchin%20%E2%80%94%20Rock%20n%20Roll%20Nerd.ogg" type="audio/ogg"/>-->
+                <!--<source src="https://michael-zhigulin.github.io/mz-codepen-projects/Material%20Design%20UI%20Audio%20Player/audio/Tim%20Minchin%20%E2%80%94%20Rock%20n%20Roll%20Nerd.mp3" type="audio/mpeg"/>-->
+            <!--</audio>-->
+
+
         </ui:define>
     </ui:composition>
 

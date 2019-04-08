@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="layout-timeline.xhtml">
+    <ui:define name="podcast">
+
+        <div class="row">
+            <div class="col s12"></div>
+            <div class="col s12 m4 l2"></div>
+            <div class="col s12 m4 l8">
+                <div class="card">
+                    <audio id="myAudio" preload="auto">
+                        <source src="../audio?idPodcast=#{timelineBean.podcast.id}" type="audio/mpeg"/>
+                    </audio>
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="/img/cover.png" alt="music"
+                                 onClick="togglePlay()"/>
+                        </div>
+                        <div class="card-stacked" id="cabecalhoP">
+                            <div class="card-content">
+                                <div class="row valign-wrapper">
+                                    <div class="col s2" id="position"></div>
+                                    <div class="col s6 range-field valign-wrapper"><input id="seekbar" type="range" min="0"
+                                                                                          max="0" step="1"
+                                                                                          oninput="setSeek(this.value)"
+                                                                                          onchange="setSeek(this.value)"/></div>
+                                    <div class="col s2 center-align" id="total"></div>
+                                    <div class="col s2 center-align"><a class="" onClick="toggleMute()"><i
+                                            class="material-icons teal-text lighten-1" id="Muted">volume_up</i></a></div>
+                                    <div class="col s3 range-field valign-wrapper"><input id="vol-control" type="range" min="0"
+                                                                                          max="100" step="1"
+                                                                                          oninput="SetVolume(this.value)"
+                                                                                          onchange="SetVolume(this.value)"/>
+                                    </div>
+
+                                </div>
+                                <a class="btn-floating btn-large halfway-fab waves-effect waves-light red"
+                                   onClick="togglePlay()"><i class="material-icons" id="PausePlay">play_arrow</i></a>
+                            </div>
+                            <div class="card-action">
+                                <p>Postado por: <b><h:outputText value="#{timelineBean.podcast.dono.nome}"></h:outputText></b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+
+                        </div>
+                        <div class="card-content">
+                            <h5 class="">
+                                <h:outputText value="#{timelineBean.podcast.titulo}"></h:outputText>
+                            </h5>
+                            <p>
+                                <h:outputText value="#{timelineBean.podcast.descricao}"></h:outputText>
+                            </p>
+                        </div>
+                        <div class="card-action">
+
+                            <div class="col s12 card-title">Comentários:</div> <br/>
+                            <div class="card-content">
+                                <ul class="collapsible">
+                                    <ui:repeat value="#{timelineBean.podcast.comentarios}" var="comnetario">
+                                        <li>
+                                            <div class="collapsible-header">
+                                                <h:graphicImage rendered="#{comnetario.usuario.fotoPath!=NULL}"
+                                                                styleClass="perfil responsive-img"
+                                                                url="/imagem?emailUsuario#{comnetario.usuario.email}">
+
+                                                </h:graphicImage>
+                                                <h:graphicImage rendered="#{comnetario.usuario.fotoPath==NULL}"
+                                                                styleClass="icone"
+                                                                url="http://www.wfmu.org/images/generic_avatar_300.png">
+
+                                                </h:graphicImage>
+                                                <p><h:outputText value="#{comentario.texto}"></h:outputText></p>
+                                                <span class="badge" ><b><h:outputText value="#{comentario.usuario.nome}"></h:outputText></b></span>
+                                            </div>
+                                        </li>
+                                    </ui:repeat>
+                                </ul>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col s12 m4 l2">
+                                    <h:graphicImage rendered="#{loginBean.user.fotoPath!=NULL}"
+                                                    styleClass="perfilComentario responsive-img"
+                                                    url="/imagem?emailUsuario#{loginBean.user.email}">
+
+                                    </h:graphicImage>
+                                    <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL}"
+                                                    styleClass="icone"
+                                                    url="http://www.wfmu.org/images/generic_avatar_300.png">
+
+                                    </h:graphicImage>
+                                </div>
+                                <h:form>
+                                    <div class="col s12 m4 l8">
+
+                                        <div class="input-field col5 s5">
+                                            <input id="comentario" />
+                                            <label for="comentario">Escreva um comentário...</label>
+
+                                        </div>
+
+                                        <h:inputHidden value=""></h:inputHidden>
+                                    </div>
+                                    <div class="col s12 m4 l2">
+                                        <button class="btn-floating waves-effect waves-light" ><i
+                                                class="material-icons right">chat</i>
+                                        </button>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <h:outputScript name="js/podcast.js"></h:outputScript>
+
+
+            </div>
+
+
+            <div class="col s12 m4 l2"></div>
+        </div>
+
+
+    </ui:define>
+</ui:composition>
+
+</html>
