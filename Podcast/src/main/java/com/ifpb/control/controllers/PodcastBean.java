@@ -2,8 +2,12 @@ package com.ifpb.control.controllers;
 
 import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.PodcastDaoImpl;
+import com.ifpb.model.dao.impl.TurmaVirtualDaoImpl;
 import com.ifpb.model.dao.interfaces.PodcastDao;
+import com.ifpb.model.dao.interfaces.TurmaVirtualDao;
+import com.ifpb.model.domain.Enum.Tipo;
 import com.ifpb.model.domain.Podcast;
+import com.ifpb.model.domain.TurmaVirtual;
 
 
 import javax.annotation.PostConstruct;
@@ -39,6 +43,10 @@ public class PodcastBean {
 
     private Part audio;
 
+    private TurmaVirtualDao turmaVirtualDao;
+
+    private List<String> nomeTurmas;
+
     @ManagedProperty("#{fileBean}")
     private FileBean fileBean;
 
@@ -54,6 +62,23 @@ public class PodcastBean {
     public void init(){
         podcast = new Podcast();
         podcastDao = new PodcastDaoImpl();
+        turmaVirtualDao = new TurmaVirtualDaoImpl();
+        try{
+            List<TurmaVirtual> turmas;
+            nomeTurmas = new ArrayList();
+            if (loginBean.getUser().getTipo().equals(Tipo.PROFESSOR)) {
+                turmas = turmaVirtualDao.listarTurmasCriadas(loginBean.getUser().getEmail());
+
+            } else {
+                turmas = turmaVirtualDao.listarTurmasParticiantes(loginBean.getUser().getEmail());
+            }
+            for (TurmaVirtual turma:turmas ) {
+                nomeTurmas.add(turma.getNome());
+            }
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -121,5 +146,13 @@ public class PodcastBean {
 
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
+    }
+
+    public List<String> getNomeTurmas() {
+        return nomeTurmas;
+    }
+
+    public void setNomeTurmas(List<String> nomeTurmas) {
+        this.nomeTurmas = nomeTurmas;
     }
 }
