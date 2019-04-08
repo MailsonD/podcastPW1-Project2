@@ -20,7 +20,7 @@
                 <div class="col s12 m4 l8">
                     <div class="card">
 
-                        <div class="card-content">
+                        <div class="card-content" >
                             <center>
 
                                 <img class="perfil" src="http://www.wfmu.org/images/generic_avatar_300.png">
@@ -61,9 +61,10 @@
                                             <p>Deseja continuar com esta ação?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="#!" class="modal-close btn">Não</a>
-                                            <a href="#"
-                                               class="waves-effect waves-green red btn-flat center-align" id="md1_YesBtn">Sim</a>
+                                            <h:form> <a href="#!" class="modal-close btn">Não</a>
+                                            <h:commandLink action="#{loginBean.desativarConta}">
+                                               <i class="waves-effect waves-green red btn-flat " id="md1_YesBtn">Sim</i>
+                                           </h:commandLink></h:form>
                                         </div>
                                     </div>
                                     <h:panelGrid columns="1" cellpadding="5">
@@ -152,39 +153,51 @@
             <!-- Modal Structure -->
             <div id="modal2" class="modal">
                 <div class="modal-content">
-                    <h4>Add an Image</h4>
+                    <h4>Editar Conta</h4>
 
                     <div class="row">
-                        <form class="col s12">
-                            <div class="row modal-form-row">
-                                <div class="input-field col s12">
-                                    <input id="nome" type="text" class="validate"></input>
-                                    <label for="nome">Nome completo:</label>
-                                </div>
+                        <h:form id="formCadastro" >
+                            <div class="form-group">
+                                <h:outputLabel value="E-mail:"></h:outputLabel>
+                                <p:inputText id="email" required="true"  value="#{loginBean.user.email}"
+                                             requiredMessage="Email obrigatório"
+                                             styleClass="form-control form-control-user">
+                                </p:inputText>
+                                <p:message for="email" />
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="telefone" type="text" class="validate"></input>
-                                    <label for="telefone">Telefone: </label>
-                                </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Nome:"></h:outputLabel>
+                                <p:inputText id="nome" required="true" value="#{loginBean.user.nome}"
+                                             requiredMessage="Nome obrigatório"
+                                             styleClass="form-control form-control-user" />
+                                <p:message for="nome" />
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea id="Email" type="text" class="materialize-textarea validate"></textarea>
-                                    <label for="Email">Email</label>
-                                </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Senha:"></h:outputLabel>
+                                <p:password id="senhaC" required="true"
+                                            requiredMessage="Senha obrigatória"
+                                            styleClass="form-control form-control-user" />
+                                <p:message for="senhaC" />
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea id="nascimento" type="text" class="materialize-textarea validate"></textarea>
-                                    <label for="nascimento">Nascimento:</label>
-                                </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Data de nascimento"></h:outputLabel>
+                                <p:inputMask converter="dataConverter" id="nascimento" value="#{loginBean.user.nascimento}" validatorMessage="data inválida" mask="99/99/9999" required="true" requiredMessage="Data de nascimento obrigatória">
+                                </p:inputMask>
+                                <p:message for="nascimento" />
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <h:outputLabel value="Telefone:"></h:outputLabel>
+                                <p:inputText id="telefone" required="true" value="#{loginBean.user.telefone}"
+                                             styleClass="form-control form-control-user" />
+                            </div>
+                            <p:commandButton styleClass="btn"
+                                             action="#{usuarioBean.editar}" value="Editar">
+                                <f:attribute name="tipoForm" value="editar">Editar</f:attribute>
+                            </p:commandButton>
+
+                        </h:form>
+
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <a class="modal-action btn modal-close waves-effect waves-green btn-flat">Editar</a>
                 </div>
             </div>
 
