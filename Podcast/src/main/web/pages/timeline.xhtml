@@ -10,11 +10,13 @@
 
     <ui:composition template="layout-principal.xhtml">
         <ui:define name="conteudo">
+            <div class="container">
 
 <div class="row">
+    <div class="col">
                 <ui:repeat value="#{timelineBean.timeline}" var="podcast">
 
-                        <div class="card col s4" style="width: 300px">
+                        <div class="card  col " >
                             <div class="card-image">
                                 <img src="../assets/img/m.png" class="capa" style="height: 300px; width: 300px;"/>
                                 <span class="card-title"><h:outputText value="#{podcast.titulo}"></h:outputText></span>
@@ -33,8 +35,8 @@
                             </div>
                         </div>
 
-                </ui:repeat>
-</div>
+                </ui:repeat></div>
+</div></div>
 
             <!--<div class="container">-->
                 <!--<div class="player">-->
