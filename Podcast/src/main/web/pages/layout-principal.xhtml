@@ -49,29 +49,28 @@
 <h:body>
     <f:view>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo">IFCast</a>
+            <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo"><i class="material-icons">mic</i>IFCast</a>
 
                 <ul class="right hide-on-med-and-down">
 
-                    <li><a href="usuario.xhtml">Usuário</a></li>
+                        <li><div class="input-field" style="top: 5px;">
+                            <h:form prependId="false">
+                                <p:commandButton style="display: none" styleClass="btn-small " ajax="true" action="#{searchBean.search}"></p:commandButton>
+                                <h:inputText autocomplete="true" id="search" value="#{searchBean.filter}"></h:inputText>
+                            </h:form>
+                        </div></li>
+                        <li><a href="usuario.xhtml"><i class="material-icons">person</i></a></li>
 
-                    <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
-                    <li><a href="uploadPodcast.xhtml" class="modal-trigger" >Upload</a></li>
-                    <li><div class="input-field" style="top: 20px;">
-                        <h:form>
-                            <h:inputText autocomplete="true" id="search" value="#{searchBean.filter}"></h:inputText>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
-                            <p:commandButton ajax="true" action="#{searchBean.search}"></p:commandButton>
-                        </h:form>
-                    </div></li>
+                        <li><a href="turmasvirtuais.xhtml"><i class="material-icons">group</i></a></li>
+                        <li><a href="uploadPodcast.xhtml" class="modal-trigger btn orange" ><i class="material-icons">file_upload</i></a></li>
 
 
-                    <li>
-                        <h:form>
-                            <h:commandLink action="#{loginBean.logout}"><i class="material-icons">settings_power</i></h:commandLink>
-                        </h:form>
-                    </li>
+
+                        <li>
+                            <h:form>
+                                <h:commandLink action="#{loginBean.logout}"><i class="material-icons">settings_power</i></h:commandLink>
+                            </h:form>
+                        </li>
                 </ul>
 
 
@@ -85,7 +84,7 @@
         </ui:insert>
 
 
-        <footer class="page-footer">
+        <footer class="page-footer" >
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
