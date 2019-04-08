@@ -18,14 +18,12 @@ public class TimelineBean {
 
     private Podcast podcast;
 
-    private String estado;
 
     private List<Podcast> timeline;
 
     @PostConstruct
     public void init(){
         podcastDao = new PodcastDaoImpl();
-        estado = "tocar";
         try {
             podcast = podcastDao.buscar(1);
             timeline = podcastDao.listarOrdenado();
@@ -34,8 +32,8 @@ public class TimelineBean {
         }
     }
 
-    public void tocar(){
-        estado = "tocar";
+    public String tocar(){
+        return "tocar";
     }
 
     public List<Podcast> getTimeline() {
@@ -54,11 +52,4 @@ public class TimelineBean {
         this.podcast = podcast;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }

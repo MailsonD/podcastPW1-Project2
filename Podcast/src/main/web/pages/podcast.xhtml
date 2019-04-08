@@ -6,8 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="layout-timeline.xhtml">
-    <ui:define name="podcast">
+<ui:composition template="layout-principal.xhtml">
+    <ui:define name="conteudo">
 
         <div class="row">
             <div class="col s12"></div>
@@ -19,7 +19,7 @@
                     </audio>
                     <div class="card horizontal">
                         <div class="card-image">
-                            <img src="/img/cover.png" alt="music"
+                            <img src="/assets/img/m.png" alt="music"
                                  onClick="togglePlay()"/>
                         </div>
                         <div class="card-stacked" id="cabecalhoP">
@@ -70,7 +70,7 @@
                                             <div class="collapsible-header">
                                                 <h:graphicImage rendered="#{comnetario.usuario.fotoPath!=NULL}"
                                                                 styleClass="perfil responsive-img"
-                                                                url="/imagem?emailUsuario#{comnetario.usuario.email}">
+                                                                url="/imagem?emailUsuario=#{comnetario.usuario.email}">
 
                                                 </h:graphicImage>
                                                 <h:graphicImage rendered="#{comnetario.usuario.fotoPath==NULL}"
@@ -91,7 +91,7 @@
                                 <div class="col s12 m4 l2">
                                     <h:graphicImage rendered="#{loginBean.user.fotoPath!=NULL}"
                                                     styleClass="perfilComentario responsive-img"
-                                                    url="/imagem?emailUsuario#{loginBean.user.email}">
+                                                    url="/imagem?emailUsuario=#{loginBean.user.email}">
 
                                     </h:graphicImage>
                                     <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL}"
