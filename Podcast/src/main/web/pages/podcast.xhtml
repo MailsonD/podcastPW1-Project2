@@ -70,12 +70,12 @@
                                         <li>
                                             <div class="collapsible-header">
                                                 <h:graphicImage rendered="#{comnetario.usuario.fotoPath!=NULL}"
-                                                                styleClass="perfil responsive-img"
+                                                                styleClass="icone responsive-img" style="width: 50px; height: 50px;border-radius: 50%;"
                                                                 url="/imagem?emailUsuario=#{comnetario.usuario.email}">
 
                                                 </h:graphicImage>
                                                 <h:graphicImage rendered="#{comnetario.usuario.fotoPath==NULL}"
-                                                                styleClass="icone"
+                                                                styleClass="icone" style="width: 50px; height: 50px; border-radius: 50%;"
                                                                 url="http://www.wfmu.org/images/generic_avatar_300.png">
 
                                                 </h:graphicImage>
@@ -91,12 +91,12 @@
 
                                 <div class="col s12 m4 l2">
                                     <h:graphicImage rendered="#{loginBean.user.fotoPath!=NULL}"
-                                                    styleClass="perfilComentario responsive-img"
+                                                    styleClass="icone responsive-img" style="width: 50px; height: 50px; border-radius: 50%;"
                                                     url="/imagem?emailUsuario=#{loginBean.user.email}">
 
                                     </h:graphicImage>
                                     <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL}"
-                                                    styleClass="icone"
+                                                    styleClass="icone" style="width: 50px; height: 50px;border-radius: 50%;"
                                                     url="http://www.wfmu.org/images/generic_avatar_300.png">
 
                                     </h:graphicImage>
