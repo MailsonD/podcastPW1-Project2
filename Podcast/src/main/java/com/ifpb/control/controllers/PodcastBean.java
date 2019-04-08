@@ -17,6 +17,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -45,7 +46,9 @@ public class PodcastBean {
 
     private TurmaVirtualDao turmaVirtualDao;
 
-    private List<String> nomeTurmas;
+    private List<SelectItem> nomeTurmas;
+
+    private String nomeTurma;
 
     @ManagedProperty("#{fileBean}")
     private FileBean fileBean;
@@ -73,7 +76,7 @@ public class PodcastBean {
                 turmas = turmaVirtualDao.listarTurmasParticiantes(loginBean.getUser().getEmail());
             }
             for (TurmaVirtual turma:turmas ) {
-                nomeTurmas.add(turma.getNome());
+                nomeTurmas.add(new SelectItem(turma.getNome(),turma.getNome()));
             }
         } catch (DataAccessException e) {
             e.printStackTrace();
@@ -89,7 +92,12 @@ public class PodcastBean {
             Files.copy(file, new File(fileBean.getUploadAudioPath() + "/" + nomeArquivo).toPath(), StandardCopyOption.REPLACE_EXISTING);
             podcast.setAudioPath(nomeArquivo);
             podcast.setDono(loginBean.getUser());
-            podcastDao.salvar(podcast);
+            if(nomeTurma.equals("nenhuma")){
+                podcastDao.salvar(podcast);
+            }else{
+                podcastDao.salvarEmTurma(podcast,nomeTurma);
+            }
+
         } catch (IOException e1) {
             e1.printStackTrace();
         } catch (DataAccessException e) {
@@ -148,11 +156,19 @@ public class PodcastBean {
         this.loginBean = loginBean;
     }
 
-    public List<String> getNomeTurmas() {
+    public List<SelectItem> getNomeTurmas() {
         return nomeTurmas;
     }
 
-    public void setNomeTurmas(List<String> nomeTurmas) {
+    public void setNomeTurmas(List<SelectItem> nomeTurmas) {
         this.nomeTurmas = nomeTurmas;
+    }
+
+    public String getNomeTurma() {
+        return nomeTurma;
+    }
+
+    public void setNomeTurma(String nomeTurma) {
+        this.nomeTurma = nomeTurma;
     }
 }

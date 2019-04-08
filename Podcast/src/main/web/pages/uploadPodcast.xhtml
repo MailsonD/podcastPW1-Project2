@@ -41,6 +41,14 @@
                             <p:message for="descricao" />
                         </div>
                         <div class="form-group">
+                            <h:outputLabel value="Escolha uma turma"></h:outputLabel>
+                            <p:selectOneMenu id="turma" value="#{podcastBean.nomeTurma}" >
+                                <f:selectItem itemLabel="Nenhuma" itemValue="nenhuma" />
+                                <f:selectItems value="#{podcastBean.nomeTurmas}"></f:selectItems>
+                            </p:selectOneMenu>
+                            <p:message for="turma" />
+                        </div>
+                        <div class="form-group">
                             <br/>
                             <h:outputLabel value="Audio" /><br/>
                             <h:inputFile id="arquivo" validator="#{podcastBean.validateFile}" value="#{podcastBean.audio}" required="true" requiredMessage="É necessário selecionar um arquivo" />
