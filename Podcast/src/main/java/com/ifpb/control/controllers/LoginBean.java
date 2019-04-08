@@ -59,6 +59,16 @@ public class LoginBean {
         return "login";
     }
 
+    public String desativarConta(){
+        try {
+            usuarioDao.remover(user.getEmail());
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        request.getSession(false).invalidate();
+        return "login";
+    }
     public String getEmail() {
         return email;
     }
