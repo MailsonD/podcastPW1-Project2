@@ -70,7 +70,7 @@
                                     <p><b>Nome completo: </b> <h:outputText value="#{loginBean.user.nome}"/> </p>
                                     <p><b>Telefone:</b> <h:outputText value="#{loginBean.user.telefone}"/> </p>
                                     <p><b>E-mail: </b><h:outputText value="#{loginBean.user.email}"/> </p>
-                                    <p><b>Nascimento:</b><h:outputText value="#{loginBean.user.nascimento}"/> </p>
+                                    <p><b>Nascimento: </b><h:outputText type="date" converter="dataConverter" mask="dd/MM/yyyy" value="#{loginBean.user.nascimento}"/> </p>
                                 </div>
                                 <div id="settings"><h4>Configuração da conta:</h4>
                                     <a href="#modal2" class="modal-trigger btn">Editar conta</a><br/><br/>
