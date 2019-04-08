@@ -12,6 +12,7 @@ import com.ifpb.model.domain.Usuario;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 @ManagedBean
@@ -24,6 +25,9 @@ public class ComentarioBean {
 
     private int idPodcast;
 
+    @ManagedProperty("#{playerBean}")
+    private PlayerBean playerBean;
+
     @PostConstruct
     public void init(){
         comentario = new Comentario();
@@ -33,6 +37,7 @@ public class ComentarioBean {
     public void comentar(){
         try {
             comentarioDao.salvar(comentario,idPodcast);
+            playerBean.atualizar_comentários();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -52,5 +57,13 @@ public class ComentarioBean {
 
     public void setIdPodcast(int idPodcast) {
         this.idPodcast = idPodcast;
+    }
+
+    public PlayerBean getPlayerBean() {
+        return playerBean;
+    }
+
+    public void setPlayerBean(PlayerBean playerBean) {
+        this.playerBean = playerBean;
     }
 }
