@@ -10,6 +10,7 @@ import com.ifpb.model.domain.Usuario;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import java.sql.ResultSet;
@@ -24,24 +25,32 @@ public class TurmaVirtualBean {
     private TurmaVirtualDao turmaVirtualDao;
     private List<TurmaVirtual> turmas;
 
+    @ManagedProperty("#{usuarioBean}")
+    private UsuarioBean usuarioBean;
+
+
+
     @PostConstruct
     public void init(){
         turmaVirtualDao = new TurmaVirtualDaoImpl();
         turmas = new ArrayList<TurmaVirtual>();
     }
 
-    public String salvar(TurmaVirtual tv){
+    public String salvar(){
         try {
-            turmaVirtualDao.salvar(tv);
+            turmaVirtual.setCriador(usuarioBean.getLoginBean().getUser());
+            turmaVirtual.setParticipantes(usuarioBean.getAlunos());
+            turmaVirtualDao.salvar(turmaVirtual);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
+
         return "turmasvirtuais";
     }
 
-    public String remover(String reference){
+    public String remover(){
         try {
-            turmaVirtualDao.remover(reference);
+            turmaVirtualDao.remover(turmaVirtual.getNome());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -57,9 +66,9 @@ public class TurmaVirtualBean {
 
     }
 
-    public String buscarTurma(String reference) throws DataAccessException {
+    public String buscarTurma() throws DataAccessException {
         try{
-            turmaVirtualDao.buscar(reference);
+            turmaVirtualDao.buscar(turmaVirtual.getNome());
         }
         catch (DataAccessException e){
             e.printStackTrace();
@@ -67,36 +76,36 @@ public class TurmaVirtualBean {
         return "turmasvirtuais";
     }
 
-    public String adicionarAlunoTurma(String nomeTurma, String emailAluno){
+    public String adicionarAlunoTurma(){
         try {
-            turmaVirtualDao.adicionarAlunoaTurma(nomeTurma, emailAluno);
+            turmaVirtualDao.adicionarAlunoaTurma(turmaVirtual.getNome(),usuarioBean.getUsuario().getEmail());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return "turmasvirtuais";
     }
 
-    public String removerAlunoDeTurma(String nomeTurma, String emailAluno){
+    public String removerAlunoDeTurma(){
         try {
-            turmaVirtualDao.removerAlunodeTurma(nomeTurma, emailAluno);
+            turmaVirtualDao.removerAlunodeTurma(turmaVirtual.getNome(),usuarioBean.getUsuario().getEmail());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return "turmasvirtuais";
     }
 
-    public String listarTurmasCriadas(String criador){
+    public String listarTurmasCriadas(){
         try {
-            turmaVirtualDao.listarTurmasCriadas(criador);
+            turmaVirtualDao.listarTurmasCriadas(usuarioBean.getLoginBean().getUser().getEmail());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return "turmasvirtuais";
     }
 
-    public String listarTurmasParticipantes(String emailAluno){
+    public String listarTurmasParticipantes(){
         try {
-            turmaVirtualDao.listarTurmasParticiantes(emailAluno);
+            turmaVirtualDao.listarTurmasParticiantes(usuarioBean.getUsuario().getEmail());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -117,5 +126,13 @@ public class TurmaVirtualBean {
 
     public void setTurmas(List<TurmaVirtual> turmas) {
         this.turmas = turmas;
+    }
+
+    public UsuarioBean getUsuarioBean() {
+        return usuarioBean;
+    }
+
+    public void setUsuarioBean(UsuarioBean usuarioBean) {
+        this.usuarioBean = usuarioBean;
     }
 }
