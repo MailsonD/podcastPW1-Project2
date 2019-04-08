@@ -1,5 +1,6 @@
 package com.ifpb.control.controllers;
 
+import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.PodcastDaoImpl;
 import com.ifpb.model.dao.interfaces.PodcastDao;
 import com.ifpb.model.domain.Podcast;
@@ -61,8 +62,13 @@ public class PodcastBean {
         log.info(nomeArquivo);
         try (InputStream file = audio.getInputStream()) {
             Files.copy(file, new File(fileBean.getUploadAudioPath() + "/" + nomeArquivo).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            podcast.setAudioPath(nomeArquivo);
+            podcast.setDono(loginBean.getUser());
+            podcastDao.salvar(podcast);
         } catch (IOException e1) {
             e1.printStackTrace();
+        } catch (DataAccessException e) {
+            e.printStackTrace();
         }
     }
 
@@ -74,7 +80,7 @@ public class PodcastBean {
         String type = file.getContentType().split("/")[0];
         log.severe(type);
         log.severe(""+file.getSize());
-        if (file.getSize() > 1024 * 1000) {
+        if (file.getSize() > 1024 * 10000) {
             msgs.add(new FacesMessage("O arquivo é muito grande!"));
         }
         if (!pattern.matcher(file.getContentType()).matches()) {
@@ -101,21 +107,6 @@ public class PodcastBean {
     public void setAudio(Part audio) {
         this.audio = audio;
     }
-
-    public LoginBean getLoginBean() {
-        return loginBean;
-    }
-
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
-    }
-
-    public FileBean getFileBean() {
-        return fileBean;
-    }
-
-    public void setFileBean(FileBean fileBean) {
-        this.fileBean = fileBean;
-    }
+    
 
 }

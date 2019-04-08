@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport"
@@ -47,12 +49,13 @@
 <h:body>
     <f:view>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IFCast</a>
+            <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo">IFCast</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="usuario.xhtml">Usuário</a></li>
 
                     <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
-                    <li><a href="uploadPodcast.xhtml">Upload</a></li>
+                    <li><a href="uploadPodcast.xhtml" class="modal-trigger" >Upload</a></li>
+
 
                     <li>
                         <h:form>
@@ -102,6 +105,12 @@
 
     <h:outputScript name="js/materialize.js"></h:outputScript>
     <h:outputScript name="js/materialize.min.js"></h:outputScript>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.modal').modal();
+        });
+    </script>
 </h:body>
 
 </html>
