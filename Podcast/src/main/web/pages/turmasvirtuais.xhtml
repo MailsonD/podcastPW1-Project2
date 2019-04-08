@@ -41,16 +41,16 @@
 
                     <div class="card">
                         <div class="card-title">Turmas Virtuais</div>
-                        <div class="card-content"><h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}" ><p>As Turmas Virtuais permitem que qualquer professor possa criar suas turmas utilizando a nossa plataforma.
-                            Aqui, você professor, poderá gerênciar sua turma e alunos participantes, assim como disponibilizar podcasts para os mesmos.</p></h:commandLink></div>
+                        <div class="card-content"><p>As Turmas Virtuais permitem que qualquer professor possa criar suas turmas utilizando a nossa plataforma.
+                            Aqui, você professor, poderá gerênciar sua turma e alunos participantes, assim como disponibilizar podcasts para os mesmos.</p></div>
                         <div class="col s12">
                             <ul class="tabs">
                                 <li class="tab col s3"><a class="active" href="#test1">Suas turmas</a></li>
-                                <li class="tab col s3"><h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}"> <a  href="#test2">Criar turma</a></h:commandLink></li>
+                                <li class="tab col s3"> <a  href="#test2">Criar turma</a></li>
                             </ul>
                         </div>
 
-                        <h:commandLink rendered="#{loginBean.user.tipo=='PROFESSOR'}" ><div id="test2" class="col s12">
+                        <div id="test2" class="col s12">
                             <p>Título da turma:</p> <h:inputText/>
                             <p>Descrição:</p> <h:inputText/>
                             <div class="col s6"><ul>
@@ -83,7 +83,7 @@
                             </center>
 
 
-                        </div></h:commandLink>
+                        </div>
 
                     </div>
                     <div id="test1" class="col s12">
