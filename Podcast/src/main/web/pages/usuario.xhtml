@@ -23,9 +23,31 @@
                         <div class="card-content" >
                             <center>
 
-                                <img class="perfil" src="http://www.wfmu.org/images/generic_avatar_300.png">
-                                    <source src="http://www.wfmu.org/images/generic_avatar_300.png"></source>
-                                </img>
+                                <a href="#modalFoto" class="modal-trigger">
+                                    <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL}" styleClass="perfil" url="http://www.wfmu.org/images/generic_avatar_300.png"></h:graphicImage>
+                                    <h:graphicImage rendered="#{loginBean.user.fotoPath!=NULL}" styleClass="perfil" url="/imagem?emailUsuario=#{loginBean.user.email}"></h:graphicImage>
+
+                                </a>
+
+                                <div id="modalFoto" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Editar Imagem</h4>
+                                        <div class="row">
+                                            <h:form enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <br/>
+                                                    <h:outputLabel value="Imagem" /><br/>
+                                                    <h:inputFile id="foto" validator="#{usuarioBean.validateFile}" value="#{usuarioBean.foto}" required="true" requiredMessage="É necessário selecionar um arquivo" />
+                                                    <p:message  for="foto" />
+                                                </div>
+                                                <br/>
+                                                <p:commandButton styleClass="btn" class="large orange" update="formUpload"
+                                                                 action="#{usuarioBean.atualizarFoto}" value="Realizar upload" ajax="false">
+                                                </p:commandButton>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                                 <h4><h:outputText value="#{loginBean.user.nome}"/> </h4>
