@@ -59,10 +59,10 @@
                     <li><a href="uploadPodcast.xhtml" class="modal-trigger" >Upload</a></li>
                     <li><div class="input-field" style="top: 20px;">
                         <h:form>
-                            <h:inputText autocomplete="true" id="search" value="#{timelineBean.filter}"></h:inputText>
+                            <h:inputText autocomplete="true" id="search" value="#{searchBean.filter}"></h:inputText>
                             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                             <i class="material-icons">close</i>
-                            <p:commandButton ajax="true" action="#{timelineBean.search}"></p:commandButton>
+                            <p:commandButton ajax="true" action="#{searchBean.search}"></p:commandButton>
                         </h:form>
                     </div></li>
 

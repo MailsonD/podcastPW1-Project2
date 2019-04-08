@@ -21,16 +21,24 @@ public class TimelineBean {
 
     private List<Podcast> timeline;
 
-    private String filter;
 
     @ManagedProperty("#{playerBean}")
     private PlayerBean playerBean;
+
+    @ManagedProperty("#{searchBean}")
+    private SearchBean searchBean;
 
     @PostConstruct
     public void init(){
         podcastDao = new PodcastDaoImpl();
         try {
-            timeline = podcastDao.listarOrdenado();
+            if(searchBean.getFilter()==null){
+                timeline = podcastDao.listarOrdenado();
+            }else{
+                timeline = podcastDao.buscarPodcastsPorFiltro("%"+searchBean.getFilter()+"%");
+                searchBean.setFilter(null);
+            }
+
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -41,9 +49,6 @@ public class TimelineBean {
         return "tocar";
     }
 
-    public void search(){
-
-    }
 
     public List<Podcast> getTimeline() {
         return timeline;
@@ -69,11 +74,12 @@ public class TimelineBean {
         this.playerBean = playerBean;
     }
 
-    public String getFilter() {
-        return filter;
+
+    public SearchBean getSearchBean() {
+        return searchBean;
     }
 
-    public void setFilter(String filter) {
-        this.filter = filter;
+    public void setSearchBean(SearchBean searchBean) {
+        this.searchBean = searchBean;
     }
 }
