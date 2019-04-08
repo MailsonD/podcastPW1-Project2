@@ -78,7 +78,6 @@
                                 </f:facet>
 
                                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                                    <!--                        <p:graphicImage name="demo/images/car/#{car.brand}-big.gif" />-->
 
                                     <p:outputPanel>
                                         <h:panelGrid columns="2" cellpadding="5">
@@ -90,12 +89,59 @@
 
                                             <h:outputText value="Criador:" />
                                             <h:outputText value="#{t.criador.nome}" style="font-weight: bold"/>
+
+                                            <a href="#modalpodcastturma" class="modal-trigger btn">Podcasts</a><br/><br/>
+                                            <a href="#modallistaturma" class="modal-trigger btn">Alunos</a><br/><br/>
+
                                         </h:panelGrid>
                                     </p:outputPanel>
                                 </h:panelGrid>
                             </p:dataScroller>
                         </h:form>
                     </div></div></div>
+
+            <!-- Modal Structure -->
+            <div id="modalpodcastturma" class="modal">
+                <div class="modal-content">
+                    <h4>Podcasts</h4>
+
+                    <ui:repeat var="o" value="#{bean.message}" varStatus="status">
+
+                        <div class="row">
+                            <h:form id="formlistpodcast" >
+                                <div class="form-group">
+                                    <h:outputText value="#{bean.message}" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputText value="#{bean.message}" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputText value="#{bean.message}" />
+                                </div>
+                            </h:form>
+
+                        </div>
+
+                    </ui:repeat>
+
+                </div>
+            </div>
+
+            <div id="modallistaturma" class="modal">
+                <div class="modal-content">
+                    <h4>Editar Conta</h4>
+                    <ui:repeat var="o" value="#{bean.message}" varStatus="status">
+                        <div class="row">
+                            <h:form id="formlistaalunos" >
+                                <div class="form-group">
+                                    <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL}" styleClass="perfil" url="http://www.wfmu.org/images/generic_avatar_300.png"></h:graphicImage>
+                                    <h:outputText value="#{usuarioBean.usuario.email}" />
+                                </div>
+                            </h:form>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </div>
 
             <script type="text/javascript">
                 $(document).ready(function(){
