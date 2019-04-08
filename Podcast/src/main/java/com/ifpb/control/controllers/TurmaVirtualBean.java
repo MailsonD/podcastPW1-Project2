@@ -34,13 +34,16 @@ public class TurmaVirtualBean {
     public void init(){
         turmaVirtualDao = new TurmaVirtualDaoImpl();
         turmas = new ArrayList<TurmaVirtual>();
+        turmaVirtual = new TurmaVirtual();
+
     }
 
     public String salvar(){
+
         try {
-            turmaVirtual.setCriador(usuarioBean.getLoginBean().getUser());
-            turmaVirtual.setParticipantes(usuarioBean.getAlunos());
-            turmaVirtualDao.salvar(turmaVirtual);
+            this.turmaVirtual.setCriador(usuarioBean.getLoginBean().getUser());
+            this.turmaVirtual.setParticipantes(usuarioBean.getAlunos());
+            turmaVirtualDao.salvar(this.turmaVirtual);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
