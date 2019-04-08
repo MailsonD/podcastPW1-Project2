@@ -6,11 +6,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-
-</h:head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
@@ -20,13 +18,21 @@
     <style type="text/css">
         #overflowTest {
 
-           padding: 15px;
+            padding: 15px;
             width: 100%;
             height: 150px;
             overflow: scroll;
 
-      }
+        }
     </style>
+
+    <h:outputStylesheet>
+        .perfil {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+    </h:outputStylesheet>
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
     <!--Import Google Icon Font-->
@@ -36,6 +42,7 @@
     <h:outputStylesheet name="css/materialize.css"></h:outputStylesheet>
     <h:outputStylesheet name="css/materialize.min.css"></h:outputStylesheet>
 
+</h:head>
 
 <h:body>
     <f:view>
