@@ -78,12 +78,14 @@ public class UsuarioBean {
         }
     }
 
-    public void editar(){
+    public String editar(){
         try {
-            usuarioDao.atualizar(loginBean.getUser().getEmail(),usuario);
+            usuarioDao.atualizar(loginBean.getUser().getEmail(),loginBean.getUser());
+            loginBean.getUser().setSenha(null);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     public Usuario getUsuario() {
