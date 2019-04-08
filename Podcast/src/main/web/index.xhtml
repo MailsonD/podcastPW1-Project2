@@ -69,26 +69,25 @@
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal">
                     <div class="modal-content">
-                        <h:form forceId="true" id="formLogin" update = "true" >
-                            <p:messages autoUpdate="true" id="erroLogin" />
+                        <h:form id="formLogin">
+                            <p:messages></p:messages>
                             <div class="form-group">
                                 <h:outputLabel value="Email"></h:outputLabel>
                                 <p:inputText id="login" required="true"  value="#{loginBean.email}"
                                              requiredMessage="Login obrigatório"
                                              styleClass="form-control form-control-user">
                                 </p:inputText>
-                                <p:message autoUpdate="true" for="login" />
+                                <p:message for="login" />
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Senha"></h:outputLabel>
                                 <p:password id="senha" required="true" value="#{loginBean.senha}"
                                             requiredMessage="Senha obrigatória"
                                             styleClass="form-control form-control-user" />
-                                <p:message autoUpdate="true" for="senha" />
+                                <p:message for="senha" />
                             </div>
                             <p:commandButton styleClass="btn" update="formLogin"
-                                             actionListener="#{loginBean.efetuarLogin}" value="Entrar" ajax = "true">
-                                <f:attribute name="tipoForm" value="login">Logar</f:attribute>
+                                             action="#{loginBean.efetuarLogin}" value="Entrar" ajax="true" >
                             </p:commandButton>
 
                         </h:form>
