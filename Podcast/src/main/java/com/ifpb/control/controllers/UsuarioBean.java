@@ -8,6 +8,7 @@ import com.ifpb.model.domain.Usuario;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class UsuarioBean {
     private List<Usuario> usuarios;
 
     private List<Usuario> alunos;
+
+    @ManagedProperty("#{loginBean}")
+    private LoginBean loginBean;
 
 
     @PostConstruct
@@ -74,6 +78,14 @@ public class UsuarioBean {
         }
     }
 
+    public void editar(){
+        try {
+            usuarioDao.atualizar(loginBean.getUser().getEmail(),usuario);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -98,5 +110,11 @@ public class UsuarioBean {
         this.alunos = alunos;
     }
 
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
 
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
 }
