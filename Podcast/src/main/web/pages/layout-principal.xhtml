@@ -49,12 +49,22 @@
 <h:body>
     <f:view>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo">IFCast</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="usuario.xhtml">Usuário</a></li>
+            <div class="nav-wrapper container"><a id="logo-container" href="timeline.xhtml" class="brand-logo"><i class="material-icons">mic</i>IFCast</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-                    <li><a href="turmasvirtuais.xhtml">Turmas Virtuais</a></li>
-                    <li><a href="uploadPodcast.xhtml" class="modal-trigger" >Upload</a></li>
+                <ul class="right hide-on-med-and-down">
+                    <li><div class="input-field" style="top: 5px;">
+                        <h:form>
+                            <h:inputText autocomplete="true" id="search" value="#{timelineBean.filter}"></h:inputText>
+
+                            <p:commandButton styleClass="btn-small" ajax="true" value="Buscar" action="#{timelineBean.search}"></p:commandButton>
+                        </h:form>
+                    </div></li>
+                    <li><a href="usuario.xhtml"><i class="material-icons">person</i></a></li>
+
+                    <li><a href="turmasvirtuais.xhtml"><i class="material-icons">group</i></a></li>
+                    <li><a href="uploadPodcast.xhtml" class="modal-trigger btn orange" ><i class="material-icons">file_upload</i></a></li>
+
 
 
                     <li>
@@ -65,7 +75,15 @@
                 </ul>
 
 
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+                <ul class="sidenav" id="mobile-demo">
+                    <li><a href="usuario.xhtml"><i class="material-icons">person</i>Usuário</a></li>
+
+                    <li><a href="turmasvirtuais.xhtml"><i class="material-icons">group</i>Turmas virtuais</a></li>
+                    <li><a href="uploadPodcast.xhtml" class="modal-trigger btn orange" ><i class="material-icons">file_upload</i>Upload</a></li>
+
+
+                </ul>
             </div>
         </nav>
 
@@ -75,7 +93,7 @@
         </ui:insert>
 
 
-        <footer class="page-footer">
+        <footer class="page-footer" >
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -110,6 +128,10 @@
             $('.modal').modal();
             $('.collapsible').collapsible();
         });
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+
     </script>
 </h:body>
 

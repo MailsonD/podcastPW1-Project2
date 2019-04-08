@@ -21,6 +21,8 @@ public class TimelineBean {
 
     private List<Podcast> timeline;
 
+    private String filter;
+
     @ManagedProperty("#{playerBean}")
     private PlayerBean playerBean;
 
@@ -37,6 +39,10 @@ public class TimelineBean {
     public String tocar(){
         playerBean.setPodcast(podcast);
         return "tocar";
+    }
+
+    public void search(){
+
     }
 
     public List<Podcast> getTimeline() {
@@ -61,5 +67,13 @@ public class TimelineBean {
 
     public void setPlayerBean(PlayerBean playerBean) {
         this.playerBean = playerBean;
+    }
+
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 }
