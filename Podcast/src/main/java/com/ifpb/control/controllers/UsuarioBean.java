@@ -129,10 +129,6 @@ public class UsuarioBean {
     public void validateFile(FacesContext ctx, UIComponent comp, Object value) {
         List<FacesMessage> msgs = new ArrayList<>();
         Part file = (Part)value;
-        log.info(file.getContentType());
-        String type = file.getContentType().split("/")[0];
-        log.severe(type);
-        log.severe(""+file.getSize());
         if (file.getSize() > 1024 * 5000) {
             msgs.add(new FacesMessage("O arquivo é muito grande!"));
         }

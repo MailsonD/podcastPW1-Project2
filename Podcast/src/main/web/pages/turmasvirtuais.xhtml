@@ -53,31 +53,37 @@
                         <h:form><div id="test2" class="col s12">
                             <p>Título da turma:</p> <h:inputText value="#{turmaVirtualBean.turmaVirtual.nome}"/>
                             <p>Descrição:</p> <h:inputText value="#{turmaVirtualBean.turmaVirtual.descricao}"/>
-                            <div class="col s6"><ul>
-                                <li>
-                                    <p>Alunos adicionados:</p>
-                                    <ul class="collection">
-                                        <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
-                                            <span class="title">Nome</span>
-                                            <p>E-mail
-                                            </p>
-                                            <a class="btn small blue">Remover</a></li>
 
-                                    </ul>
 
-                                </li></ul></div>
-                            <div class="col s6"> <ul><li><p>Todos os alunos:</p>
+                            <h3 style="margin-top: 0">Selecione os alunos</h3>
+                            <p:pickList id="pickList" value="#{turmaVirtualBean.alunos}" var="alunos" itemLabel="#{alunos}" itemValue="#{alunos}" />
 
-                                <ul class="collection">
-                                    <ui:repeat  value="#{usuarioBean.alunos}" var="aluno">
-                                        <li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>
-                                            <span class="title">#{aluno.nome} </span>
-                                            <p>#{aluno.email} </p>
-                                            <a class="btn small blue">Adicionar</a></li>
-                                    </ui:repeat>
-                                </ul>
-                            </li>
-                            </ul></div>
+
+                            <!--<div class="col s6"><ul>-->
+                                <!--<li>-->
+                                    <!--<p>Alunos adicionados:</p>-->
+                                    <!--<ul class="collection">-->
+                                        <!--<li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>-->
+                                            <!--<span class="title">Nome</span>-->
+                                            <!--<p>E-mail-->
+                                            <!--</p>-->
+                                            <!--<a class="btn small blue">Remover</a></li>-->
+
+                                    <!--</ul>-->
+
+                                <!--</li></ul></div>-->
+                            <!--<div class="col s6"> <ul><li><p>Todos os alunos:</p>-->
+
+                                <!--<ul class="collection">-->
+                                    <!--<ui:repeat  value="#{usuarioBean.alunos}" var="aluno">-->
+                                        <!--<li class="collection-item avatar"> <img src="http://www.wfmu.org/images/generic_avatar_300.png" alt="" class="circle"/>-->
+                                            <!--<span class="title">#{aluno.nome} </span>-->
+                                            <!--<p>#{aluno.email} </p>-->
+                                            <!--<a class="btn small blue">Adicionar</a></li>-->
+                                    <!--</ui:repeat>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--</ul></div>-->
                             <center>
                                 <p:commandButton styleClass="btn" ajax="false"
                                                  action="#{turmaVirtualBean.salvar}" value="Criar">

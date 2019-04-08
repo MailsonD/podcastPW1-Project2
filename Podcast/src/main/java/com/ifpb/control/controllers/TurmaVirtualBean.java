@@ -3,10 +3,13 @@ package com.ifpb.control.controllers;
 
 import com.ifpb.model.dao.Exceptions.DataAccessException;
 import com.ifpb.model.dao.impl.TurmaVirtualDaoImpl;
+import com.ifpb.model.dao.impl.UsuarioDaoImpl;
 import com.ifpb.model.dao.interfaces.TurmaVirtualDao;
+import com.ifpb.model.dao.interfaces.UsuarioDao;
 import com.ifpb.model.domain.Podcast;
 import com.ifpb.model.domain.TurmaVirtual;
 import com.ifpb.model.domain.Usuario;
+import org.primefaces.model.DualListModel;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -24,6 +27,8 @@ public class TurmaVirtualBean {
     private TurmaVirtual turmaVirtual;
     private TurmaVirtualDao turmaVirtualDao;
     private List<TurmaVirtual> turmas;
+    private UsuarioDao usuarioDao;
+    private DualListModel<String> emailAlunos;
 
     @ManagedProperty("#{usuarioBean}")
     private UsuarioBean usuarioBean;
@@ -35,14 +40,31 @@ public class TurmaVirtualBean {
         turmaVirtualDao = new TurmaVirtualDaoImpl();
         turmas = new ArrayList<TurmaVirtual>();
         turmaVirtual = new TurmaVirtual();
+        usuarioDao = new UsuarioDaoImpl();
 
+        List<String> alunosTarget = new ArrayList<>();
+        List<String> alunosSource = new ArrayList<>();
+
+        try {
+            List<Usuario> alunos = usuarioDao.listarAlunos();
+            for (Usuario aluno:alunos) {
+                alunosSource.add(aluno.getEmail());
+            }
+            emailAlunos = new DualListModel<>(alunosSource, alunosTarget);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     public String salvar(){
 
         try {
             this.turmaVirtual.setCriador(usuarioBean.getLoginBean().getUser());
-            this.turmaVirtual.setParticipantes(usuarioBean.getAlunos());
+            List<Usuario> alunos = new ArrayList<>();
+            for (String email:emailAlunos.getTarget()) {
+                alunos.add(usuarioDao.buscar(email));
+            }
+            this.turmaVirtual.setParticipantes(alunos);
             turmaVirtualDao.salvar(this.turmaVirtual);
         } catch (DataAccessException e) {
             e.printStackTrace();
@@ -104,6 +126,14 @@ public class TurmaVirtualBean {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public DualListModel<String> getAlunos() {
+        return emailAlunos;
+    }
+
+    public void setAlunos(DualListModel<String> alunos) {
+        this.emailAlunos = alunos;
     }
 
     public TurmaVirtual getTurmaVirtual() {
