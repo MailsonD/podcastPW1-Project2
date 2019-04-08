@@ -107,6 +107,20 @@ public class PodcastBean {
     public void setAudio(Part audio) {
         this.audio = audio;
     }
-    
 
+    public FileBean getFileBean() {
+        return fileBean;
+    }
+
+    public void setFileBean(FileBean fileBean) {
+        this.fileBean = fileBean;
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
 }
