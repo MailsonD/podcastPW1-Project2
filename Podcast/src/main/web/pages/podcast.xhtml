@@ -15,7 +15,7 @@
             <div class="col s12 m4 l8">
                 <div class="card">
                     <audio id="myAudio" preload="auto">
-                        <source src="../audio?idPodcast=#{timelineBean.podcast.id}" type="audio/mpeg"/>
+                        <source src="../audio?idPodcast=#{playerBean.podcast.id}" type="audio/mpeg"/>
                     </audio>
                     <div class="card horizontal">
                         <div class="card-image">
@@ -44,7 +44,7 @@
                                    onClick="togglePlay()"><i class="material-icons" id="PausePlay">play_arrow</i></a>
                             </div>
                             <div class="card-action">
-                                <p>Postado por: <b><h:outputText value="#{timelineBean.podcast.dono.nome}"></h:outputText></b></p>
+                                <p>Postado por: <b><h:outputText value="#{playerBean.podcast.dono.nome}"></h:outputText></b></p>
                             </div>
                         </div>
                     </div>
@@ -54,10 +54,10 @@
                         </div>
                         <div class="card-content">
                             <h5 class="">
-                                <h:outputText value="#{timelineBean.podcast.titulo}"></h:outputText>
+                                <h:outputText value="#{playerBean.podcast.titulo}"></h:outputText>
                             </h5>
                             <p>
-                                <h:outputText value="#{timelineBean.podcast.descricao}"></h:outputText>
+                                <h:outputText value="#{playerBean.podcast.descricao}"></h:outputText>
                             </p>
                         </div>
                         <div class="card-action">
@@ -65,7 +65,7 @@
                             <div class="col s12 card-title">Comentários:</div> <br/>
                             <div class="card-content">
                                 <ul class="collapsible">
-                                    <ui:repeat value="#{timelineBean.podcast.comentarios}" var="comnetario">
+                                    <ui:repeat value="#{playerBean.podcast.comentarios}" var="comnetario">
                                         <li>
                                             <div class="collapsible-header">
                                                 <h:graphicImage rendered="#{comnetario.usuario.fotoPath!=NULL}"

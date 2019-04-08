@@ -7,6 +7,7 @@ import com.ifpb.model.domain.Podcast;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import java.util.List;
 
@@ -18,14 +19,15 @@ public class TimelineBean {
 
     private Podcast podcast;
 
-
     private List<Podcast> timeline;
+
+    @ManagedProperty("#{playerBean}")
+    private PlayerBean playerBean;
 
     @PostConstruct
     public void init(){
         podcastDao = new PodcastDaoImpl();
         try {
-            podcast = podcastDao.buscar(1);
             timeline = podcastDao.listarOrdenado();
         } catch (DataAccessException e) {
             e.printStackTrace();
@@ -33,6 +35,7 @@ public class TimelineBean {
     }
 
     public String tocar(){
+        playerBean.setPodcast(podcast);
         return "tocar";
     }
 
@@ -52,4 +55,11 @@ public class TimelineBean {
         this.podcast = podcast;
     }
 
+    public PlayerBean getPlayerBean() {
+        return playerBean;
+    }
+
+    public void setPlayerBean(PlayerBean playerBean) {
+        this.playerBean = playerBean;
+    }
 }
