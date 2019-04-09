@@ -85,7 +85,7 @@ public class PodcastBean {
     }
 
 
-    public void upload(){
+    public String upload(){
         String nomeArquivo = Timestamp.from(Instant.now()).toString() + "-" + audio.getSubmittedFileName();
         log.info(nomeArquivo);
         try (InputStream file = audio.getInputStream()) {
@@ -97,12 +97,13 @@ public class PodcastBean {
             }else{
                 podcastDao.salvarEmTurma(podcast,nomeTurma);
             }
-
+            return "timeline";
         } catch (IOException e1) {
             e1.printStackTrace();
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     public void validateFile(FacesContext ctx,UIComponent comp,Object value) {
