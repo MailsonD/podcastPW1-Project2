@@ -105,18 +105,24 @@
                 <div class="modal-content">
                     <h4>Podcasts</h4>
 
-                    <ui:repeat var="o" value="#{bean.message}" varStatus="status">
+                    <ui:repeat var="o" value="#{turmaVirtualBean.turmaVirtual.podcasts}" varStatus="status">
 
                         <div class="row">
                             <h:form id="formlistpodcast" >
                                 <div class="form-group">
-                                    <h:outputText value="#{bean.message}" />
+                                    <h:outputText value="#{o.titulo}" />
                                 </div>
                                 <div class="form-group">
-                                    <h:outputText value="#{bean.message}" />
+                                    <h:outputText value="#{o.categoria}" />
                                 </div>
                                 <div class="form-group">
-                                    <h:outputText value="#{bean.message}" />
+                                    <h:outputText value="#{o.descricao}" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputText value="#{o.dono}" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputText value="#{o.audioPath}" />
                                 </div>
                             </h:form>
 
@@ -129,15 +135,13 @@
 
             <div id="modallistaturma" class="modal">
                 <div class="modal-content">
-                    <h4>Editar Conta</h4>
-                    <ui:repeat var="o" value="#{bean.message}" varStatus="status">
+                    <h4>Alunos</h4>
+                    <ui:repeat var="o" value="#{turmaVirtualBean.turmaVirtual.participantes}" varStatus="status">
                         <div class="row">
-                            <h:form id="formlistaalunos" >
-                                <div class="form-group">
-                                    <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL}" styleClass="perfil" url="http://www.wfmu.org/images/generic_avatar_300.png"></h:graphicImage>
-                                    <h:outputText value="#{usuarioBean.usuario.email}" />
-                                </div>
-                            </h:form>
+                            <div class="form-group">
+                               <!--<h:graphicImage rendered="#{usuarioBean.user.fotoPath==NULL}" styleClass="perfil" url="http://www.wfmu.org/images/generic_avatar_300.png"></h:graphicImage>
+                               --> <h:outputText value="#{o}" />
+                            </div>
                         </div>
                     </ui:repeat>
                 </div>
