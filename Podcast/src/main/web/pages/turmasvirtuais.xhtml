@@ -165,14 +165,11 @@
                                                                     value="#{podcast.dono.nome}"></h:outputText>
                                                             </p>
                                                             <h:form>
-                                                                <h:commandLink
-                                                                        styleClass="btn-floating halfway-fab waves-effect waves-light red"
-                                                                        action="#{timelineBean.tocar}">
+                                                                <p:commandLink styleClass="btn-floating halfway-fab waves-effect waves-light red" action="#{timelineBean.tocar}">
                                                                     <i class="material-icons">play_arrow</i>
-                                                                    <f:setPropertyActionListener
-                                                                            value="#{podcast}"
-                                                                            target="#{timelineBean.podcast}"/>
-                                                                </h:commandLink>
+                                                                    <f:setPropertyActionListener value="#{podcast}"
+                                                                                                 target="#{timelineBean.podcast}" />
+                                                                </p:commandLink>
                                                             </h:form>
                                                         </div>
                                                     </div>
