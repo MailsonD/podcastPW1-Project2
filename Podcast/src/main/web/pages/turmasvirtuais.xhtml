@@ -7,56 +7,57 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="layout-principal.xhtml">
-        <ui:define name="conteudo">
-            <style type="text/css">
-                .logo {
-                    width: 5%
-                }
+<ui:composition template="layout-principal.xhtml">
+    <ui:define name="conteudo">
+        <style type="text/css">
+            .logo {
+                width: 5%
+            }
 
-                .detail {
-                    width: 95%;
-                    padding-left: 25px;
-                }
+            .detail {
+                width: 95%;
+                padding-left: 25px;
+            }
 
-                .detail td {
-                    font-size: 24px;
-                }
+            .detail td {
+                font-size: 24px;
+            }
 
-                .ui-datascroller .ui-datascroller-item {
-                    border-bottom: 1px solid #A8A8A8;
-                    padding: 25px 10px;
-                    /* with the exported variables from Nova and Luna Themes*/
-                    border-bottom-color: var(--input-border-color, #A8A8A8);
-                }
-            </style>
-
-
-
-            <div class="row">
-                <div class="col s12">
+            .ui-datascroller .ui-datascroller-item {
+                border-bottom: 1px solid #A8A8A8;
+                padding: 25px 10px;
+                /* with the exported variables from Nova and Luna Themes*/
+                border-bottom-color: var(--input-border-color, #A8A8A8);
+            }
+        </style>
 
 
+        <div class="row">
+            <div class="col s12">
 
 
-                    <div class="card">
-                        <div class="card-title">Turmas Virtuais</div>
-                        <div class="card-content"><p>As Turmas Virtuais permitem que qualquer professor possa criar suas turmas utilizando a nossa plataforma.
-                            Aqui, você professor, poderá gerênciar sua turma e alunos participantes, assim como disponibilizar podcasts para os mesmos.</p></div>
-                        <div class="col s12">
-                            <ul class="tabs">
-                                <li class="tab col s3"><a class="active" href="#test1">Suas turmas</a></li>
-                                <li class="tab col s3"> <a  href="#test2">Criar turma</a></li>
-                            </ul>
-                        </div>
+                <div class="card">
+                    <div class="card-title">Turmas Virtuais</div>
+                    <div class="card-content">
+                        <p>As Turmas Virtuais permitem que qualquer professor possa criar suas turmas utilizando a nossa plataforma.
+                            Aqui, você professor, poderá gerênciar sua turma e alunos participantes, assim como disponibilizar podcasts para os mesmos.</p>
+                    </div>
+                    <div class="col s12">
+                        <ul class="tabs">
+                            <li class="tab col s3"><a class="active" href="#test1">Suas turmas</a></li>
+                            <li class="tab col s3"><a href="#test2">Criar turma</a></li>
+                        </ul>
+                    </div>
 
-                        <h:form><div id="test2" class="col s12">
+                    <h:form>
+                        <div id="test2" class="col s12">
                             <p>Título da turma:</p> <h:inputText value="#{turmaVirtualBean.turmaVirtual.nome}"/>
                             <p>Descrição:</p> <h:inputText value="#{turmaVirtualBean.turmaVirtual.descricao}"/>
 
 
                             <h3 style="margin-top: 0">Selecione os alunos</h3>
-                            <p:pickList id="pickList" value="#{turmaVirtualBean.emailAlunos}" var="alunos" itemLabel="#{alunos}" itemValue="#{alunos}" />
+                            <p:pickList id="pickList" value="#{turmaVirtualBean.emailAlunos}" var="alunos"
+                                        itemLabel="#{alunos}" itemValue="#{alunos}"/>
 
 
                             <center>
@@ -67,99 +68,136 @@
                             </center>
 
 
-                        </div></h:form>
-
-                    </div>
-                    <div id="test1" class="col s12">
-                        <h:form>
-                            <p:dataScroller value="#{turmaVirtualBean.turmas}" var="t" chunkSize="10">
-                                <f:facet name="header">
-                                    Desça para que apareça mais turmas:
-                                </f:facet>
-
-                                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-
-                                    <p:outputPanel>
-                                        <h:panelGrid columns="2" cellpadding="5">
-                                            <h:outputText value="Título:" />
-                                            <h:outputText value="#{t.nome}" style="font-weight: bold"/>
-
-                                            <h:outputText value="Descrição:" />
-                                            <h:outputText value="#{t.descricao}" style="font-weight: bold"/>
-
-                                            <h:outputText value="Criador:" />
-                                            <h:outputText value="#{t.criador.nome}" style="font-weight: bold"/>
-
-                                            <a href="#modalpodcastturma" class="modal-trigger btn">Podcasts</a><br/><br/>
-                                            <a href="#modallistaturma" class="modal-trigger btn">Alunos</a><br/><br/>
-
-                                        </h:panelGrid>
-                                    </p:outputPanel>
-                                </h:panelGrid>
-                            </p:dataScroller>
-                        </h:form>
-                    </div></div></div>
-
-            <!-- Modal Structure -->
-            <div id="modalpodcastturma" class="modal">
-                <div class="modal-content">
-                    <h4>Podcasts</h4>
-
-                    <ui:repeat var="o" value="#{turmaVirtualBean.turmaVirtual.podcasts}" varStatus="status">
-
-                        <div class="row">
-                            <h:form id="formlistpodcast" >
-                                <div class="form-group">
-                                    <h:outputText value="#{o.titulo}" />
-                                </div>
-                                <div class="form-group">
-                                    <h:outputText value="#{o.categoria}" />
-                                </div>
-                                <div class="form-group">
-                                    <h:outputText value="#{o.descricao}" />
-                                </div>
-                                <div class="form-group">
-                                    <h:outputText value="#{o.dono}" />
-                                </div>
-                                <div class="form-group">
-                                    <h:outputText value="#{o.audioPath}" />
-                                </div>
-                            </h:form>
-
                         </div>
-
-                    </ui:repeat>
+                    </h:form>
 
                 </div>
-            </div>
+                <div id="test1" class="col s12">
+                    <h:form>
+                        <p:dataScroller value="#{turmaVirtualBean.turmas}" var="turma" chunkSize="10">
+                            <f:facet name="header">
+                                Desça para que apareça mais turmas:
+                            </f:facet>
 
-            <div id="modallistaturma" class="modal">
-                <div class="modal-content">
-                    <h4>Alunos</h4>
-                    <ui:repeat var="o" value="#{turmaVirtualBean.turmaVirtual.participantes}" varStatus="status">
-                        <div class="row">
-                            <div class="form-group">
-                               <!--<h:graphicImage rendered="#{usuarioBean.user.fotoPath==NULL}" styleClass="perfil" url="http://www.wfmu.org/images/generic_avatar_300.png"></h:graphicImage>
-                               --> <h:outputText value="#{o}" />
+                            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+
+                                <p:outputPanel>
+                                    <h:panelGrid columns="2" cellpadding="5">
+                                        <h:outputText value="Título:"/>
+                                        <h:outputText value="#{turma.nome}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Descrição:"/>
+                                        <h:outputText value="#{turma.descricao}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Criador:"/>
+                                        <h:outputText value="#{turma.criador.nome}" style="font-weight: bold"/>
+
+                                        <a href="#modalpodcast#{turma.nome}" class="modal-trigger btn">Podcasts</a><br/><br/>
+                                        <!-- Modal Structure -->
+
+
+                                        <a href="#modallista#{turma.nome}" class="modal-trigger btn">Alunos</a><br/><br/>
+
+
+
+
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                            </h:panelGrid>
+                            <div id="modallista#{turma.nome}" class="modal">
+                                <div class="modal-content">
+                                    <h4>Alunos</h4>
+                                    <div class="card">
+                                        <h5 class="card-title">Participantes</h5>
+                                        <div class="card-content">
+                                            <ul class="collection">
+                                                <ui:repeat var="aluno" value="#{turma.participantes}">
+                                                    <li class="collection-item avatar">
+                                                        <h:graphicImage rendered="#{(aluno.fotoPath!=NULL) and (aluno.fotoPath ne '')}"
+                                                                        styleClass="icone responsive-img" style="width: 50px; height: 50px;border-radius: 50%;"
+                                                                        url="/imagem?emailUsuario=#{aluno.email}">
+
+                                                        </h:graphicImage>
+                                                        <h:graphicImage rendered="#{(aluno.fotoPath==NULL)  or  (aluno.fotoPath  eq '')}"
+                                                                        styleClass="icone" style="width: 50px; height: 50px; border-radius: 50%;"
+                                                                        url="http://www.wfmu.org/images/generic_avatar_300.png">
+
+                                                        </h:graphicImage>
+                                                        <span class="title"><h:outputText
+                                                                value="#{aluno.nome}"></h:outputText></span>
+                                                        <p><h:outputText
+                                                                value="#{aluno.email}"></h:outputText></p>
+
+                                                    </li>
+
+
+                                                </ui:repeat>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </ui:repeat>
+
+                            <div id="modalpodcast#{turma.nome}" class="modal">
+                                <div class="modal-content">
+                                    <h4>Podcasts</h4>
+                                    <div class="row">
+                                        <ul>
+                                            <ui:repeat var="podcast" value="#{turma.podcasts}">
+
+                                                <li>
+                                                    <div class="col s6 card">
+                                                        <div class="card-content">
+                                        <span class="card-title grey-text text-darken-4"><h:outputText
+                                                value="#{podcast.titulo}"></h:outputText><span><i
+                                                class="material-icons right">info</i></span></span>
+                                                            <p>Categoria: <h:outputText
+                                                                    value="#{podcast.categoria}"></h:outputText>
+                                                            </p>
+                                                            <p>Dono: <h:outputText
+                                                                    value="#{podcast.dono.nome}"></h:outputText>
+                                                            </p>
+                                                            <h:form>
+                                                                <h:commandLink
+                                                                        styleClass="btn-floating halfway-fab waves-effect waves-light red"
+                                                                        action="#{timelineBean.tocar}">
+                                                                    <i class="material-icons">play_arrow</i>
+                                                                    <f:setPropertyActionListener
+                                                                            value="#{podcast}"
+                                                                            target="#{timelineBean.podcast}"/>
+                                                                </h:commandLink>
+                                                            </h:form>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            </ui:repeat>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </p:dataScroller>
+                    </h:form>
                 </div>
             </div>
+        </div>
 
-            <script type="text/javascript">
-                $(document).ready(function(){
-                    $('.materialboxed').materialbox();
-                });
-                $(document).ready(function(){
-                    $('.tabs').tabs();
-                });
-                $(document).ready(function(){
-                    $('.modal').modal();
-                });
-            </script>
 
-        </ui:define>
-    </ui:composition>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.materialboxed').materialbox();
+            });
+            $(document).ready(function () {
+                $('.tabs').tabs();
+            });
+            $(document).ready(function () {
+                $('.modal').modal();
+            });
+        </script>
+
+    </ui:define>
+</ui:composition>
 
 </html>

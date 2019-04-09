@@ -24,8 +24,8 @@
                             <center>
 
                                 <a href="#modalFoto" class="modal-trigger">
-                                    <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL}" styleClass="perfil" url="http://www.wfmu.org/images/generic_avatar_300.png"></h:graphicImage>
-                                    <h:graphicImage rendered="#{loginBean.user.fotoPath!=NULL}" styleClass="perfil" url="/imagem?emailUsuario=#{loginBean.user.email}"></h:graphicImage>
+                                    <h:graphicImage rendered="#{loginBean.user.fotoPath==NULL || loginBean.user.fotoPath==''}" styleClass="perfil" url="http://www.wfmu.org/images/generic_avatar_300.png"></h:graphicImage>
+                                    <h:graphicImage rendered="#{loginBean.user.fotoPath!=NULL && loginBean.user.fotoPath!=''}" styleClass="perfil" url="/imagem?emailUsuario=#{loginBean.user.email}"></h:graphicImage>
 
                                 </a>
 
