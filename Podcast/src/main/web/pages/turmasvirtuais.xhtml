@@ -98,9 +98,8 @@
                                         <!-- Modal Structure -->
 
 
-                                        <a href="#modallista#{turma.nome}" class="modal-trigger btn">Alunos</a><br/><br/>
-
-
+                                        <a href="#modallista#{turma.nome}"
+                                           class="modal-trigger btn">Alunos</a><br/><br/>
 
 
                                     </h:panelGrid>
@@ -115,14 +114,18 @@
                                             <ul class="collection">
                                                 <ui:repeat var="aluno" value="#{turma.participantes}">
                                                     <li class="collection-item avatar">
-                                                        <h:graphicImage rendered="#{(aluno.fotoPath!=NULL) and (aluno.fotoPath ne '')}"
-                                                                        styleClass="icone responsive-img" style="width: 50px; height: 50px;border-radius: 50%;"
-                                                                        url="/imagem?emailUsuario=#{aluno.email}">
+                                                        <h:graphicImage
+                                                                rendered="#{(aluno.fotoPath!=NULL) and (aluno.fotoPath ne '')}"
+                                                                styleClass="icone responsive-img"
+                                                                style="width: 50px; height: 50px;border-radius: 50%;"
+                                                                url="/imagem?emailUsuario=#{aluno.email}">
 
                                                         </h:graphicImage>
-                                                        <h:graphicImage rendered="#{(aluno.fotoPath==NULL)  or  (aluno.fotoPath  eq '')}"
-                                                                        styleClass="icone" style="width: 50px; height: 50px; border-radius: 50%;"
-                                                                        url="http://www.wfmu.org/images/generic_avatar_300.png">
+                                                        <h:graphicImage
+                                                                rendered="#{(aluno.fotoPath==NULL)  or  (aluno.fotoPath  eq '')}"
+                                                                styleClass="icone"
+                                                                style="width: 50px; height: 50px; border-radius: 50%;"
+                                                                url="http://www.wfmu.org/images/generic_avatar_300.png">
 
                                                         </h:graphicImage>
                                                         <span class="title"><h:outputText
@@ -150,9 +153,11 @@
                                                 <li>
                                                     <div class="col s6 card">
                                                         <div class="card-content">
-                                        <span class="card-title grey-text text-darken-4"><h:outputText
-                                                value="#{podcast.titulo}"></h:outputText><span><i
-                                                class="material-icons right">info</i></span></span>
+                                        <span class="card-title grey-text text-darken-4">
+                                            <h:outputText value="#{podcast.titulo}"></h:outputText>
+                                            <span><i class="material-icons right">info</i>
+                                            </span>
+                                        </span>
                                                             <p>Categoria: <h:outputText
                                                                     value="#{podcast.categoria}"></h:outputText>
                                                             </p>
